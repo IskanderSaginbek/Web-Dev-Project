@@ -1,0 +1,51 @@
+footer {
+  background-color: #DCDCDD;
+  display : flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+#cats {
+  display : grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  padding: 0;
+  margin: 0 8em;
+}
+
+.cat {
+  display: flex;
+  flex-direction: column;
+  padding: .5em 0;
+}
+.cat * {
+  padding : .5em .5em .5em 0;
+}
+
+.cat fa-icon {
+  color: #006ED3;
+}
+#logos fa-icon {
+  color : #006ED3;
+  font-size: 1.5rem;
+  padding: 0;
+}
+#connect {
+  color : #000000;
+}
+.cat h4 {
+  font-size: 1.2rem;
+  color : #444444;
+}
+
+#copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#copy hr {
+  width : 60%;
+  text-align: center;
+}
+#copy p {
+  padding: 1em;
+}

@@ -1,0 +1,49 @@
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1em 0;
+  width: 100%;
+}
+
+#logo {
+  display : flex;
+  flex-direction: row;
+  align-items: center;
+}
+#logo img {
+  width: 3em;
+}
+#logo h5 {
+  font-size: 1.5em;
+}
+
+#search {
+  display : flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+#search button {
+  background-color: #0079E8;
+  color : #FBFCFF;
+  padding: .1em .2em;
+  cursor : pointer;
+}
+#search button:hover {
+  background-color: #7DC1FF;
+}
+#search button:active {
+  background-color: #006ED3;
+}
+#search button:disabled {
+  background-color: #507291;
+}
+#search input[type="checkbox"] {
+  margin : 0 0 0 1em;
+}
+#check {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}

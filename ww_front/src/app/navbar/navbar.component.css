@@ -1,0 +1,32 @@
+nav {
+  display : flex;
+  flex-direction: row;
+  background-color: #0079E8;
+  justify-content: space-between;
+  color : #FBFCFF;
+  padding: 1em;
+  margin : 0 !important;
+}
+
+#nav-l {
+  display : flex;
+  flex-direction: row;
+  color : inherit;
+}
+#nav-l a {
+  color : inherit;
+  padding : 0 .5em;
+}
+
+#nav-r {
+  display : flex;
+  flex-direction: row;
+  color : inherit;
+}
+#nav-r a {
+  color : inherit;
+  padding : 0 .5em;
+}
+#nav-cart {
+  display: none;
+}

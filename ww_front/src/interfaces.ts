@@ -8,6 +8,7 @@ export interface product {
   price : number;
   amount : number;
   mfr_id : number; //manufacturer id
+  rating: number; //added rating
 }
 
 export interface resistor extends product {
