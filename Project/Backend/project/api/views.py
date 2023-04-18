@@ -5,53 +5,101 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from . import models
-from .categories import getCertainCategory
 from . import serialize
+        
+@api_view(("GET", "POST"))
+@csrf_exempt
+def getProductsByCategoryID(request, category_id):
+    products = models.Product.objects.filter(cat_id = category_id)
+    if(len(products) == 0):
+        return JsonResponse({"message": "No products of this category have been found"})
 
-def addProduct(category_name, data):
-    if(category_name == "resistor"):
-        return models.Resistor.addProduct(data)
-    elif(category_name == "capacitor"):
-        return models.Capacitor.addProduct(data)
-    elif(category_name == "transistor"):
-        return models.Transistor.addProduct(data)
-    elif(category_name == "inductor"):
-        return models.Inductor.addProduct(data)
-    elif(category_name == "diode"):
-        return models.Diode.addProduct(data)
-    elif(category_name == "ic"):
-        return models.IC.addProduct(data)
-    elif(category_name == "wire"):
-        return models.Wire.addProduct(data)
-    elif(category_name == "connector"):
-        return models.Connector.addProduct(data)
-    elif(category_name == "power"):
-        return models.Power.addProduct(data)
-    elif(category_name == "memory"):
-        return models.Memory.addProduct(data)
+    if(request.method == "GET"):
+        serialized = serialize.ProductSerializer(products, many=True)
+        return JsonResponse(serialized.data, safe=False)
+    elif(request.method == "POST"):
+        data = json.loads(request.body)
+        newProduct = models.Product.addProduct(data)
+        if(newProduct is None):
+            return JsonResponse({"message": "Such category doesn't exist"})
+        else:
+            serialized = serialize.ProductSerializer(newProduct)
+            return JsonResponse(serialized.data)
+     
+@api_view(("GET", "POST"))
+@csrf_exempt
+def getAllProducts(request):
+    if(request.method == "GET"):
+        products = models.Product.objects.all()
+        serialized = serialize.ProductSerializer(products, many=True)
+        return JsonResponse(serialized.data, safe=False)
+    elif(request.method == "POST"):
+        data = json.loads(request.body)
+        newProduct = models.Product.addProduct(data)
+        if(newProduct is None):
+            return JsonResponse({"message": "Such category doesn't exist"})
+        else:
+            serialized = serialize.ProductSerializer(newProduct)
+            return JsonResponse(serialized.data)
+
+@api_view(("GET", "PUT", "DELETE"))
+@csrf_exempt
+def getProductByID(request, product_id):
+    try:
+        product = models.Product.objects.get(id = product_id)
+    except:
+        return JsonResponse({"message": "Such product doesn't exist"})
+
+    if(request.method == "GET"):
+        serialized = serialize.ProductSerializer(product)
+        return JsonResponse(serialized.data)
+    elif(request.method == "PUT"):
+        data = json.loads(request.body)
+        product = product.updateProduct(data)
+        if(product is None):
+            return JsonResponse({"message": "Such product or category doesn't exist"})
+        serialized = serialize.ProductSerializer(product)
+        return JsonResponse(serialized.data)
+    elif(request.method == "DELETE"):
+        deletedProduct = product
+        product.delete()
+        serialized = serialize.ProductSerializer(deletedProduct)
+        return JsonResponse(serialized.data)
+    
+
 
 @api_view(("GET", "POST"))
 @csrf_exempt
-def getProductsByCategory(request, category_name):
-    category_name = category_name.lower()
-    try:
-        products = getCertainCategory(category_name) # Resistor = resistor
-    except:
-        return JsonResponse({"message": "Such category doesn't exist"})
-    
+def getCategories(request):
     if(request.method == "GET"):
-        serialized = serialize.getPluralSerialized(products, category_name)
-        return JsonResponse(serialized, safe=False)
+        products = models.Category.objects.all()
+        serialized = serialize.CategorySerializer(products, many=True)
+        return JsonResponse(serialized.data, safe=False)
     elif(request.method == "POST"):
         data = json.loads(request.body)
-        newProduct = addProduct(category_name, data)
-        serialized = serialize.getSingularSerialized(newProduct, category_name)
-        return Response(serialized)
-         
+        newCategory = models.Category.addCategory(data)
+        serialized = serialize.CategorySerializer(newCategory)
+        return JsonResponse(serialized.data)
 
+@api_view(("GET", "PUT", "DELETE"))
 @csrf_exempt
-def getAllProducts(request):
-    products = models.Product.objects.all()
-    serialized = serialize.getPluralSerialized(products, "")
-    return JsonResponse(serialized, safe=False)
-    # CRUD REQUIRED
+def getCategoryByID(request, category_id):
+    try:
+        category = models.Category.objects.get(id = category_id)
+    except:
+        return JsonResponse({"message": "Such category doesn't exist"})
+
+    if(request.method == "GET"):
+        serialized = serialize.CategorySerializer(category)
+        return JsonResponse(serialized.data)
+    elif(request.method == "PUT"):
+        data = json.loads(request.body)
+        category = category.updateCategory(data)
+        serialized = serialize.CategorySerializer(category)
+        return JsonResponse(serialized.data)
+    elif(request.method == "DELETE"):
+        deletedCategory = category
+        category.delete()
+        serialized = serialize.CategorySerializer(deletedCategory)
+        return JsonResponse(serialized.data)   
+

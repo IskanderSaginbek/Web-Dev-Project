@@ -1,243 +1,128 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.http.response import JsonResponse
+
+# class User(AbstractUser):
+#     pass
+
+# class Manufacturer(AbstractUser):
+#     pass
 
 class Product(models.Model):
+    images = models.TextField()
+    datasheet = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     descr = models.TextField()
     descr_short = models.CharField(max_length=255)
-    subcategory = models.CharField(max_length=255)
+    sub_cat = models.CharField(max_length=255)
     price = models.FloatField()
     amount = models.IntegerField()
-    manufacturer = models.IntegerField()
-    rating = models.FloatField(null=True)
-    images = models.TextField() # like "url1, url2 etc"; we can split them using split or smth
-    datasheet = models.CharField(max_length=255) # link to a file? or use FileField?
+    is_available = models.BooleanField()
+    # mfr_id = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    rating = models.FloatField()
+    cat_id = models.ForeignKey("Category", on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ["-rating"]
+        ordering = ["-price", "-amount"]
 
     def __str__(self):
         return self.name
-
-class Resistor(Product):
-    resistance = models.IntegerField()
-    power_value = models.FloatField()
-    tolerance = models.FloatField()
-
+    
     def addProduct(data):
-        newProduct = Resistor.objects.create(
+        try:
+            referencedCategory = Category.objects.get(id = data.get("cat_id"))
+        except Category.DoesNotExist:
+            return None
+        # referencedManufacturer = Manufacturer.objects.get("id" == data.get("mfr_id"))
+        if(referencedCategory is not None):
+            # is_available_toBool = True if data.get("is_available") == 1 else False  
+            newProduct = Product.objects.create(
+                images = data.get("imgs"),
+                datasheet = data.get("ds"),
+                name = data.get("name"),
+                descr = data.get("descr"),
+                descr_short = data.get("descr_short"),
+                sub_cat = data.get("sub_cat"),
+                price = data.get("price"),
+                amount = data.get("amount"),
+                is_available = data.get("is_available"),
+                cat_id = referencedCategory,
+                rating = data.get("rating"),
+                # mfr_id = referencedManufacturer
+            )
+            return newProduct
+        return {}
+    
+    def updateProduct(self, data):
+        try:
+            newCategory = Category.objects.get(id = data.get("cat_id"))
+        except:
+            return None
+
+        self.name = data.get("name")
+        self.descr = data.get("descr")
+        self.descr_short = data.get("descr_short")
+        self.images = data.get("imgs")
+        self.ds = data.get("ds")
+        self.sub_cat = data.get("sub_cat")
+        self.price = data.get("price")
+        self.amount = data.get("amount")
+        self.is_available = data.get("is_available")
+        self.rating = data.get("rating")
+        self.cat_id = newCategory
+        self.save()
+        return self
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    descr = models.TextField()
+    image = models.CharField(max_length=255)
+    descr_short = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+    
+    def addCategory(data):
+        newCategory = Category.objects.create(
             name = data.get("name"),
             descr = data.get("descr"),
+            image = data.get("image"),
             descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            resistance = data.get("resistance"),
-            power_value = data.get("power"),
-            tolerance = data.get("tolerance"),
         )
-        return newProduct
+        return newCategory
+    
+    def updateCategory(self, data):
+        self.name = data.get("name")
+        self.descr = data.get("descr")
+        self.descr_short = data.get("descr_short")
+        self.image = data.get("image")
+        self.save()
+        return self
 
+class Comment(models.Model):
+    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    text = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField()
+    dislikes = models.IntegerField()
 
-class Capacitor(Product):
-    capacitance = models.FloatField()
-    vdc = models.FloatField()
-    vac = models.FloatField()
+class History(models.Model):
+    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    ship_id = models.ForeignKey("Shipping", on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    cost = models.FloatField()
+    date = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField()
 
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            capacitance = data.get("capacitance"),
-            vdc = data.get("vdc"),
-            vac = data.get("vac"),
-        )
-        return newProduct
+class Shipping(models.Model):
+    name = models.CharField(max_length=255)
+    descr = models.TextField()
+    price = models.FloatField()
 
-class Transistor(Product):
-    tech = models.CharField(max_length=255)
-    package = models.CharField(max_length=255)
-    voltage = models.FloatField()
-
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            tech = data.get("tech"),
-            package = data.get("package"),
-            voltage = data.get("voltage"),
-        )
-        return newProduct
-
-class Inductor(Product):
-    inductance = models.FloatField()
-    tolerance = models.IntegerField() # %
-    current = models.FloatField()
-
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            inductance = data.get("inductance"),
-            tolerance = data.get("tolerance"),
-            current = data.get("current"),
-        )
-        return newProduct
-
-class Diode(Product):
-    color = models.CharField(max_length=255)
-    lum = models.FloatField()
-    vf = models.FloatField()
-
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            color = data.get("color"),
-            lum = data.get("lum"),
-            vf = data.get("vf"),
-        )
-        return newProduct
-
-class IC(Product):
-    package = models.CharField(max_length=255)
-    tech = models.CharField(max_length=255)
-
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            package = data.get("package"),
-            tech = data.get("tech"),
-        )
-        return newProduct
-
-class Wire(Product):
-    length = models.FloatField()
-    voltage = models.FloatField()
-    package = models.CharField(max_length=255)
-
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            length = data.get("length"),
-            voltage = data.get("number"),
-            package = data.get("package"),
-        )
-        return newProduct
-
-class Connector(Product):
-    standart = models.CharField(max_length=255)
-    current = models.FloatField()
-
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            standart = data.get("standart"),
-            current = data.get("current"),
-        )
-        return newProduct
-
-class Power(Product):
-    voltage = models.FloatField()
-    capacity = models.FloatField()
-
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            voltage = data.get("voltage"),
-            capacity = data.get("capacity"),
-        )
-        return newProduct
-
-class Memory(Product):
-    size = models.IntegerField()
-    interface = models.CharField(max_length=255)
-
-    def addProduct(self, data):
-        newProduct = Resistor.objects.create(
-            name = data.get("name"),
-            descr = data.get("descr"),
-            descr_short = data.get("descr_short"),
-            subcategory = data.get("sub_cat"),
-            price = data.get("price"),
-            amount = data.get("amount"),
-            manufacturer = data.get("mfr_id"),
-            rating = data.get("rating"),
-            images = data.get("imgs"),
-            datasheet  = data.get("ds"),
-            size = data.get("size"),
-            interface = data.get("int_type"),
-        )
-        return newProduct
+class CartItem(models.Model):
+    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    ship_id = models.ForeignKey(Shipping, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    price = models.FloatField()
