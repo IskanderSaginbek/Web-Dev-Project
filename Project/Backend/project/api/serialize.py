@@ -2,7 +2,11 @@ from rest_framework import serializers
 
 from . import models
 
-# NEED SERIALIZERS FOR USERS
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User
+        fields = ["id", "username", "name", "surname", "password", "email", "phone",
+                  "creditcard", "city", "profile_pic", "show_news", "prefered_cat"]
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:

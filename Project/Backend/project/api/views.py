@@ -1,13 +1,70 @@
 import json
+
 from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from django.contrib.auth import login, logout, authenticate
+
+# from rest_framework.response import Response
+# from rest_framework.decorators import api_view
 
 from . import models
 from . import serialize
+from . import forms
+
+@csrf_exempt
+def loginUser(request):
+    if(request.method == "POST"):
+        email = request.POST.get("username")
+        password = request.POST.get("password")
+
+        try:
+            user = models.User.objects.get(email = email)
+        except:
+            return JsonResponse({"message": "Such user doesn't exist"})
         
-@api_view(("GET", "POST"))
+        user = authenticate(request, email, password)
+        if(user is not None):
+            login(request, user)
+            return JsonResponse({"message": "You successfully logged in"})
+        return JsonResponse({"message": "Your password is incorrect"})
+
+@csrf_exempt 
+def logoutUser(request):
+    if(request.method == "GET"):
+        logout(request)
+        return JsonResponse({"message": "You successfully logged out"})
+
+@csrf_exempt
+def registerUser(request):
+    form = forms.NewUserForm()
+
+    if(request.method == "POST"):
+        form = forms.NewUserForm(request.POST)
+        if(form.is_valid()):
+            user = form.save(commit = False) # temp. freezing
+            # checking
+            user.save()
+            login(request, user)
+            return JsonResponse({"message": "You successfully registered"})
+
+@csrf_exempt
+def updateUser(request):
+    user = request.user
+    form = forms.UserForm(instance=user)
+
+    if(request.method == "POST"):
+        form = forms.UserForm(request.POST, instance=user)
+        if(form.is_valid()):
+            form.save()
+            return JsonResponse({"message": "You successfully registered"})
+        return JsonResponse({"message": "The form is not valid"})
+    elif(request.method == "GET"):
+        serialized = serialize.UserSerializer(user)
+        return JsonResponse(serialized.data)
+    
+
+
+
 @csrf_exempt
 def getProductsByCategoryID(request, category_id):
     products = models.Product.objects.filter(cat_id = category_id)
@@ -26,7 +83,6 @@ def getProductsByCategoryID(request, category_id):
             serialized = serialize.ProductSerializer(newProduct)
             return JsonResponse(serialized.data)
      
-@api_view(("GET", "POST"))
 @csrf_exempt
 def getAllProducts(request):
     if(request.method == "GET"):
@@ -42,7 +98,6 @@ def getAllProducts(request):
             serialized = serialize.ProductSerializer(newProduct)
             return JsonResponse(serialized.data)
 
-@api_view(("GET", "PUT", "DELETE"))
 @csrf_exempt
 def getProductByID(request, product_id):
     try:
@@ -68,7 +123,6 @@ def getProductByID(request, product_id):
     
 
 
-@api_view(("GET", "POST"))
 @csrf_exempt
 def getCategories(request):
     if(request.method == "GET"):
@@ -81,7 +135,6 @@ def getCategories(request):
         serialized = serialize.CategorySerializer(newCategory)
         return JsonResponse(serialized.data)
 
-@api_view(("GET", "PUT", "DELETE"))
 @csrf_exempt
 def getCategoryByID(request, category_id):
     try:

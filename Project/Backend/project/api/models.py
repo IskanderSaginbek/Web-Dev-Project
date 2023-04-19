@@ -1,12 +1,54 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.http.response import JsonResponse
 
-# class User(AbstractUser):
-#     pass
+class User(AbstractUser):
+    # FOR CITIES DROPDOWN
+    ALMATY = "ALMATY"
+    ASTANA = "ASTANA"
+    SHYMKENT = "SHYMKENT"
+    KARAGANDY = "KARAGANDY"
+    AKTAU = "AKTAU"
+    ATYRAU = "ATYRAU"
+    SEMEI = "SEMEI"
+    UST_KAMENOGORSK = "UST-KAMENOGORSK"
+    AKTOBE = "AKTOBE"
+    KYZYLORDA = "KYZYLORDA"
+    PETROPAVLOVSK = "PETROPAVLOVSK"
+    PAVLODAR = "PAVLODAR"
+    URALSK = "URALSK"
 
-# class Manufacturer(AbstractUser):
-#     pass
+    CITIES_CHOICES = [
+        (ALMATY, "Almaty"),
+        (ASTANA, "Astana"),
+        (SHYMKENT, "Shymkent"),
+        (KARAGANDY, "Karagandy"),
+        (AKTAU, "Aktau"),
+        (ATYRAU, "Atyrau"),
+        (SEMEI, "Semei"),
+        (UST_KAMENOGORSK, "Ust-Kamenogorsk"),
+        (AKTOBE, "Aktobe"),
+        (KYZYLORDA, "Kyzylorda"),
+        (PETROPAVLOVSK, "Petropavlovsk"),
+        (PAVLODAR, "Pavlodar"),
+        (URALSK, "Uralsk")
+    ]
+
+    username = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    surname = models.CharField(max_length=255, blank=True, null=True)
+    password = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=255, null=True, blank=True)
+    creditcard = models.CharField(max_length=255,  null=True, blank=True)
+    city = models.CharField(max_length=255, choices=CITIES_CHOICES, default="ASTANA")
+    profile_pic = models.CharField(max_length=255, blank=True, default="default-profile-pic.jpg")
+    show_news = models.BooleanField(default=True, blank=True)
+    prefered_cat = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True, blank=True)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "password"]
+
+
 
 class Product(models.Model):
     images = models.TextField()
@@ -79,6 +121,9 @@ class Category(models.Model):
     image = models.CharField(max_length=255)
     descr_short = models.CharField(max_length=255)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
     
@@ -104,8 +149,8 @@ class Comment(models.Model):
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    likes = models.IntegerField()
-    dislikes = models.IntegerField()
+    likes = models.IntegerField(default=0, blank=True)
+    dislikes = models.IntegerField(default=0, blank=True)
 
 class History(models.Model):
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -115,6 +160,9 @@ class History(models.Model):
     cost = models.FloatField()
     date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = "Histories"
 
 class Shipping(models.Model):
     name = models.CharField(max_length=255)
