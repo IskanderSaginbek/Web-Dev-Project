@@ -5,20 +5,11 @@ main {
 h1 {
   padding: .5em;
 }
-.cat {
-  border : black solid .1em;
-  border-radius: .5em;
-  margin : 0 .5em 1em .5em;
-  padding: .5em;
-  display: inline-flex;
-  flex-direction: column;
-  cursor: pointer;
-}
 .cat_descr {
   margin-top: auto;
   margin-bottom: 2em;
 }
-.cat img {
+.card img {
   border-radius: .5em;
   max-width: 100%;
 }

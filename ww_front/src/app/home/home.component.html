@@ -16,6 +16,19 @@
     </div>
     <div class="cat">
       <h3>Product categories</h3>
+      <div id = "cat_wrapper">
+        <div class="card" *ngFor="let c of categories">
+          <img src="{{c.img}}">
+          <div class="cat_descr">
+            <h3>{{c.name}}</h3>
+            <p>{{c.descr_short}}</p>
+          </div>
+        </div>
+        <div class="card" id="others" routerLink="/categories">
+          <h3>Other categories</h3>
+          <p>View all the other product categories...</p>
+        </div>
+      </div>
     </div>
     <div class="cat">
       <h3>About us</h3>

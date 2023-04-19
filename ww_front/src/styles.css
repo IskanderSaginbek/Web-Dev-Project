@@ -36,6 +36,33 @@ a:visited {
   color : #7A5A89;
 }
 
+h3 {
+  color : #006ED3;
+}
+
+select {
+  cursor : pointer;
+}
+input[type='checkbox'] {
+  cursor : pointer;
+  accent-color: #7DC1FF;
+}
+
+.card {
+  border : black solid .1em;
+  border-radius: .5em;
+  margin : 0 .5em 1em .5em;
+  padding: .5em;
+  display: inline-flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 400ms;
+}
+.card:hover {
+  background-color: #DEDEDE;
+  transition: 400ms;
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
   :root {
     font-size: .75em;
