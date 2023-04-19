@@ -8,6 +8,11 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './category/category.component';
+import { ProductComponent } from './product/product.component';
+import { ShippingsComponent } from './shippings/shippings.component';
+import { BasketComponent } from './basket/basket.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +20,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     HeaderComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CategoriesComponent,
+    CategoryComponent,
+    ProductComponent,
+    ShippingsComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,

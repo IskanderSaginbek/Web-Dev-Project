@@ -13,6 +13,7 @@ main {
   height : 30em;
 }
 #hero {
+  width : 65%;
   display: inline-block;
   border-radius: .5em;
   margin-top: 2em;
@@ -21,7 +22,8 @@ main {
 }
 #hero *{
   text-align: center;
-  color : #FFC700;
+  color : #FBFCFF;
+  padding-bottom: 1em;
 }
 #hero h1{
   font-size : 4rem;

@@ -2,7 +2,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 1em 0;
   width: 100%;
 }
@@ -11,6 +11,7 @@ header {
   display : flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 }
 #logo img {
   width: 3em;

@@ -1,0 +1,31 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<main>
+  <div>
+    <img src="{{p.imgs[0]}}">
+    <p>{{p.name}}</p>
+    <p>Category: {{cat.name}}</p>
+    <p>{{p.sub_cat}}</p>
+    <a href="{{p.ds}}">Datasheet <fa-icon [icon]="fapdf"></fa-icon></a>
+    <p>p.descr</p>
+    <p>Price: {{p.price}}$</p>
+    <p>Available: <b>{{p.amount}}</b></p>
+    <p>Manufacturer: {{mfr.name}}</p> <img src="{{mfr.img}}">
+    <p>Date published: {{p.date}}</p>
+    <p>Rating: {{p.rating}}/5.0</p>
+    <button>Share</button>
+  </div>
+  <div>
+    <input type="number" name="amount">
+    <select>
+      <option *ngFor="let s of shipments">{{s.name}} - {{s.price}}</option>
+    </select>
+    <button>Add to cart</button>
+  </div>
+  <div>
+    <img src="{{u.img}}"><fa-icon [icon]="fauser"></fa-icon>
+    <input type="text" name="com" maxlength="255">
+    <button>Send</button>
+  </div>
+</main>
+<app-footer></app-footer>

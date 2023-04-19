@@ -1,4 +1,6 @@
 export interface product {
+  cat_id : number; //category id
+  mfr_id : number; //manufacturer id
   imgs : string[]; //list of image addresses (1st one is the thumbnail)
   ds : string; //link to datasheet
   name : string;
@@ -7,62 +9,71 @@ export interface product {
   sub_cat : string; //subcategory
   price : number;
   amount : number;
-  mfr_id : number; //manufacturer id
   rating: number; //added rating
+  date : Date;
 }
-
-export interface resistor extends product {
-  resistance : number;
-  power : number;
-  tolerance : number;
+export interface category {
+  name : string;
+  descr : string;
+  descr_short : string;
+  img : string;
 }
-
-export interface capacitor extends product {
-  capacitance : number;
-  vdc : number; //voltage ratings: dc/ac
-  vac : number;
+export interface comment {
+  user_id : number;
+  prod_id : number;
+  text : string;
+  date : Date;
+  likes : number;
+  dislikes : number;
 }
-
-export interface transistor extends product {
-  tech : string; //technology
-  package : string;
-  voltage : number;
+export interface cart_item {
+  prod_id : number;
+  ship_id : number;
+  quantity : number;
+  price : number;
 }
-
-export interface inductor extends product {
-  inductance : number;
-  tolerance : number;
-  current : number;
+export interface history_item {
+  user_id : number;
+  prod_id : number;
+  ship_id : number;
+  quantity : number;
+  price : number;
+  date : Date;
+  status : number;
 }
-
-export interface diode extends product {
-  color : string;
-  lum : number; //luminous intensity
-  vf : number; //forward voltage
+export interface shipment {
+  name : string;
+  descr : string;
+  days : number;
+  price : number;
 }
-
-export interface ic extends product {
-  package : string;
-  tech : string;
+export interface user {
+  email : string;
+  username : string;
+  password : string;
+  fname : string;
+  lname : string;
+  phone : string;
+  card_num : string;
+  exp_date : Date;
+  ver_num : string;
+  address : string;
+  img : string;
+  allow_news : boolean;
+  pref_cat : number[]; //cat_id
+  pref_price : number[]; //0 - lower boundary, 1 - upper
+  only_available : boolean;
 }
-
-export interface wire extends product {
-  length : number;
-  voltage : number;
-  package : string;
-}
-
-export interface connector extends product {
-  standard : string;
-  current : number;
-}
-
-export interface power extends product {
-  voltage : number;
-  capacity: number;
-}
-
-export interface memory extends product {
-  size : number;
-  int_type : string; //interface type
+export interface mfr {
+  email : string;
+  name : string;
+  password : string;
+  descr : string;
+  phone : string;
+  card_num : string;
+  exp_date : Date;
+  ver_num : string;
+  address : string;
+  img : string;
+  allow_news : boolean;
 }

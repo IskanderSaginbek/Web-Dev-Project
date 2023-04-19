@@ -13,19 +13,20 @@ nav {
   flex-direction: row;
   color : inherit;
 }
-#nav-l a {
+
+nav a {
   color : inherit;
   padding : 0 .5em;
+}
+nav a:hover {
+  color : #FFC700;
+  text-decoration: none;
 }
 
 #nav-r {
   display : flex;
   flex-direction: row;
   color : inherit;
-}
-#nav-r a {
-  color : inherit;
-  padding : 0 .5em;
 }
 #nav-cart {
   display: none;
