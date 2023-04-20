@@ -82,7 +82,7 @@ def getProductsByCategoryID(request, category_id):
         else:
             serialized = serialize.ProductSerializer(newProduct)
             return JsonResponse(serialized.data)
-     
+       
 @csrf_exempt
 def getAllProducts(request):
     if(request.method == "GET"):

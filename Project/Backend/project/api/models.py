@@ -1,57 +1,50 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 class User(AbstractUser):
-    # FOR CITIES DROPDOWN
-    ALMATY = "ALMATY"
-    ASTANA = "ASTANA"
-    SHYMKENT = "SHYMKENT"
-    KARAGANDY = "KARAGANDY"
-    AKTAU = "AKTAU"
-    ATYRAU = "ATYRAU"
-    SEMEI = "SEMEI"
-    UST_KAMENOGORSK = "UST-KAMENOGORSK"
-    AKTOBE = "AKTOBE"
-    KYZYLORDA = "KYZYLORDA"
-    PETROPAVLOVSK = "PETROPAVLOVSK"
-    PAVLODAR = "PAVLODAR"
-    URALSK = "URALSK"
-
-    CITIES_CHOICES = [
-        (ALMATY, "Almaty"),
-        (ASTANA, "Astana"),
-        (SHYMKENT, "Shymkent"),
-        (KARAGANDY, "Karagandy"),
-        (AKTAU, "Aktau"),
-        (ATYRAU, "Atyrau"),
-        (SEMEI, "Semei"),
-        (UST_KAMENOGORSK, "Ust-Kamenogorsk"),
-        (AKTOBE, "Aktobe"),
-        (KYZYLORDA, "Kyzylorda"),
-        (PETROPAVLOVSK, "Petropavlovsk"),
-        (PAVLODAR, "Pavlodar"),
-        (URALSK, "Uralsk")
-    ]
-
-    username = models.CharField(max_length=255, unique=True)
-    name = models.CharField(max_length=255, blank=True, null=True)
-    surname = models.CharField(max_length=255, blank=True, null=True)
     password = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=255, null=True, blank=True)
-    creditcard = models.CharField(max_length=255,  null=True, blank=True)
-    city = models.CharField(max_length=255, choices=CITIES_CHOICES, default="ASTANA")
-    profile_pic = models.CharField(max_length=255, blank=True, default="default-profile-pic.jpg")
-    show_news = models.BooleanField(default=True, blank=True)
-    prefered_cat = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True, blank=True)
+    is_manufacturer = models.BooleanField(default=True)
+    is_customer = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username", "password"]
 
+class CustomerUser(models.Model):
+    userid = models.OneToOneField(User, on_delete=models.CASCADE)
+    password = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
+    username = models.CharField(max_length=255, unique=True)
+    phone = models.CharField(max_length=255, null=True, blank=True)
+    card_num = models.CharField(max_length=255,  null=True, blank=True)
+    exp_date = models.DateTimeField(null=True, blank=True)
+    ver_num = models.CharField(max_length=255, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
+    image = models.CharField(max_length=255, blank=True, null=True)
+    allow_news = models.BooleanField(default=True, blank=True)
+    pref_cat = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True, blank=True, related_name="prefered_user")
+    pref_price = models.FloatField(blank=True, null=True)
+    only_available = models.BooleanField(blank=True, null=True)
+
+class ManufacturerUser(models.Model):
+    userid = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
+    descr = models.CharField(max_length=255)
+    card_num = models.CharField(max_length=255, default="0000-0000-0000-0000", blank=True)
+    exp_date = models.DateTimeField(null=True, blank=True)
+    ver_num = models.CharField(max_length=255, default="000", blank=True)
+    address = models.CharField(max_length=255)
+    image = models.CharField(max_length=255, blank=True, null=True)
+    allow_news = models.BooleanField(default=True, blank=True)
+
 
 
 class Product(models.Model):
-    images = models.TextField()
+    images = models.TextField(blank=True, null=True)
     datasheet = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     descr = models.TextField()
@@ -60,9 +53,9 @@ class Product(models.Model):
     price = models.FloatField()
     amount = models.IntegerField()
     is_available = models.BooleanField()
-    # mfr_id = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
-    rating = models.FloatField()
-    cat_id = models.ForeignKey("Category", on_delete=models.CASCADE)
+    mfr_id = models.ForeignKey(ManufacturerUser, on_delete=models.CASCADE, related_name="manufactured_products")
+    rating = models.FloatField(default=0, blank=True, null=True)
+    cat_id = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="manufactured_categories")
 
     class Meta:
         ordering = ["-price", "-amount"]
@@ -118,7 +111,7 @@ class Product(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=255)
     descr = models.TextField()
-    image = models.CharField(max_length=255)
+    image = models.CharField(max_length=255, blank=True)
     descr_short = models.CharField(max_length=255)
 
     class Meta:
@@ -145,17 +138,17 @@ class Category(models.Model):
         return self
 
 class Comment(models.Model):
-    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(CustomerUser, on_delete=models.CASCADE, related_name="comments")
+    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="products_comments")
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0, blank=True)
     dislikes = models.IntegerField(default=0, blank=True)
 
 class History(models.Model):
-    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    ship_id = models.ForeignKey("Shipping", on_delete=models.CASCADE)
+    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="purchase_history")
+    user_id = models.ForeignKey(CustomerUser, on_delete=models.CASCADE, related_name="user_history")
+    ship_id = models.ForeignKey("Shipping", on_delete=models.CASCADE, related_name="shipping_history")
     quantity = models.IntegerField()
     cost = models.FloatField()
     date = models.DateTimeField(auto_now_add=True)
@@ -170,7 +163,7 @@ class Shipping(models.Model):
     price = models.FloatField()
 
 class CartItem(models.Model):
-    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    ship_id = models.ForeignKey(Shipping, on_delete=models.CASCADE)
+    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="picked")
+    ship_id = models.ForeignKey(Shipping, on_delete=models.CASCADE, related_name="used_shipping")
     quantity = models.IntegerField()
     price = models.FloatField()

@@ -2,11 +2,12 @@ from rest_framework import serializers
 
 from . import models
 
-class UserSerializer(serializers.ModelSerializer):
+class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.User
-        fields = ["id", "username", "name", "surname", "password", "email", "phone",
-                  "creditcard", "city", "profile_pic", "show_news", "prefered_cat"]
+        model = models.CustomerUser
+        fields = ["id", "username", "first_name", "last_name", "password", "email", "phone",
+                  "card_num", "exp_date", "ver_num", "address", "image", "allow_news", "pref_cat", 
+                  "pref_price", "only_available"]
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:

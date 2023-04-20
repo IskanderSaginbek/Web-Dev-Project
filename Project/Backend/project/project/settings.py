@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "database",
+        'NAME': "postgres",
         "USER": "postgres",
         "PASSWORD": "12345678",
         "HOST": "localhost",
@@ -128,13 +128,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+# MEDIA_URL = '/images/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'api/static'
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'api/static'
+# ]
 
-MEDIA_ROOT = BASE_DIR / 'api/static/assets'
+# MEDIA_ROOT = BASE_DIR / 'api/static/assets'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
