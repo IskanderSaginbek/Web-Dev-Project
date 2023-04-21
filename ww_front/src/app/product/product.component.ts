@@ -13,11 +13,11 @@ export class ProductComponent implements OnInit {
   cat : category = {name : "string",
     descr : "string",
     descr_short : "string",
-    img : "string"}
+    image : "string"}
   p : product = {cat_id : 1,
     mfr_id : 1,
-    imgs : ["string"],
-    ds : "string",
+    images : ["string"],
+    datasheet : "string",
     name : "string",
     descr : "string",
     descr_short : "string",

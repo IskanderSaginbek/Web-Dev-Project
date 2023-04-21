@@ -63,6 +63,17 @@ input[type='checkbox'] {
   transition: 400ms;
 }
 
+.footer-link {
+  height : 80vh;
+  background-size: cover;
+  padding: 4rem;
+}
+.footer-link h1 {
+  color: #0079E8;
+  font-size: 3rem;
+  padding-bottom: 4rem;
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
   :root {
     font-size: .75em;

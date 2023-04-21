@@ -2,32 +2,32 @@
   <div id="cats">
     <div class="cat">
       <h4>CONTACTS</h4>
-      <span><fa-icon [icon]="faPhone"></fa-icon><a>+5 555 5555 5555</a></span>
-      <span><fa-icon [icon]="faEnv"></fa-icon><a>wired@world.com</a></span>
-      <span><fa-icon [icon]="faMarker"></fa-icon><a>Almaty, Tole bi 59</a></span>
+      <span><fa-icon [icon]="faPhone"></fa-icon><a routerLink="/contacts">+5 555 5555 5555</a></span>
+      <span><fa-icon [icon]="faEnv"></fa-icon><a href="mailto:wired@world.com">wired@world.com</a></span>
+      <span><fa-icon [icon]="faMarker"></fa-icon><a href="https://maps.google.com/?q=43.25566303332728, 76.94226644652116">Almaty, Tole bi 59</a></span>
     </div>
     <div class="cat">
       <h4>INFORMATION</h4>
-      <span><a>About</a></span>
-      <span><a>Help</a></span>
-      <span><a>News</a></span>
-      <span><a>Sitemap</a></span>
+      <span><a routerLink="/about">About</a></span>
+      <span><a routerLink="/help">Help</a></span>
+      <span><a routerLink="/news">News</a></span>
+      <span><a routerLink="/sitemap">Sitemap</a></span>
     </div>
     <div class="cat">
       <h4>LEGAL</h4>
-      <span><a>Privacy policy</a></span>
-      <span><a>Terms and conditions</a></span>
-      <span><a>Cookies policy</a></span>
-      <span><a>Contacts</a></span>
+      <span><a routerLink="/privacy">Privacy policy</a></span>
+      <span><a routerLink="/terms">Terms and conditions</a></span>
+      <span><a routerLink="/cookies">Cookies policy</a></span>
+      <span><a routerLink="/contacts">Contacts</a></span>
     </div>
     <div class="cat">
       <p id="connect">Connect with us</p>
       <span id="logos">
-        <fa-icon [icon]="faFB"></fa-icon>
-        <fa-icon [icon]="faYT"></fa-icon>
-        <fa-icon [icon]="faTR"></fa-icon>
-        <fa-icon [icon]="faWA"></fa-icon>
-        <fa-icon [icon]="faIG"></fa-icon>
+        <a href="https://www.facebook.com"><fa-icon [icon]="faFB"></fa-icon></a>
+        <a href="https://www.youtube.com"><fa-icon [icon]="faYT"></fa-icon></a>
+        <a href="https://www.twitter.com"><fa-icon [icon]="faTR"></fa-icon></a>
+        <a href="https://www.whatsapp.com"><fa-icon [icon]="faWA"></fa-icon></a>
+        <a href="https://www.instagram.com"><fa-icon [icon]="faIG"></fa-icon></a>
       </span>
     </div>
   </div>

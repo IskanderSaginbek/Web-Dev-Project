@@ -1,8 +1,8 @@
 export interface product {
   cat_id : number; //category id
   mfr_id : number; //manufacturer id
-  imgs : string[]; //list of image addresses (1st one is the thumbnail)
-  ds : string; //link to datasheet
+  images : string[]; //list of image addresses (1st one is the thumbnail)
+  datasheet : string; //link to datasheet
   name : string;
   descr : string; //on the page of a product
   descr_short : string; //on the search page
@@ -16,15 +16,13 @@ export interface category {
   name : string;
   descr : string;
   descr_short : string;
-  img : string;
+  image : string;
 }
 export interface comment {
   user_id : number;
   prod_id : number;
   text : string;
   date : Date;
-  likes : number;
-  dislikes : number;
 }
 export interface cart_item {
   prod_id : number;
