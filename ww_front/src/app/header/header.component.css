@@ -23,7 +23,11 @@ header {
 #search {
   display : flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center;
+}
+#search label {
+  padding : 0 .5em;
+  font-weight: 500;
 }
 #search button {
   background-color: #0079E8;
@@ -47,4 +51,9 @@ header {
   display: flex;
   align-items: center;
   flex-direction: row;
+}
+.sub_search {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
 }

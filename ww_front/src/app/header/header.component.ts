@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faArrowDown, faArrowUp, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {category} from "../../interfaces";
 import {Constants} from "../app.component";
 
@@ -10,6 +10,8 @@ import {Constants} from "../app.component";
 })
 export class HeaderComponent implements OnInit {
   faSearch = faSearch;
+  faUp = faArrowUp;
+  faDown = faArrowDown;
   categories : category[] = Constants.cats;
   constructor() { }
 

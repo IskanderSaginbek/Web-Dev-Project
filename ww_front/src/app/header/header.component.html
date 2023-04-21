@@ -4,12 +4,25 @@
     <h5>Wired World</h5>
   </div>
   <div id="search">
-
-    <select>
-      <option value="{{c.name}}" *ngFor="let c of categories">{{c.name}}</option>
-    </select>
-    <input type="text" placeholder="Part no./Keyword">
-    <button><fa-icon [icon]="faSearch"></fa-icon></button>
+    <label>Order by:</label>
+    <div class="sub_search">
+      <select>
+        <option>Name</option>
+        <option>Manufacturer</option>
+        <option>Date published</option>
+        <option>Price</option>
+      </select>
+      <button><fa-icon [icon]="faUp"></fa-icon></button>
+      <button><fa-icon [icon]="faDown"></fa-icon></button>
+    </div>
+    <label>Category:</label>
+    <div class="sub_search">
+      <select>
+        <option value="{{c.name}}" *ngFor="let c of categories">{{c.name}}</option>
+      </select>
+      <input type="text" placeholder="Part no./Keyword">
+      <button><fa-icon [icon]="faSearch"></fa-icon></button>
+    </div>
     <span id="check"><input type="checkbox"><p>In stock</p></span>
   </div>
 </header>
