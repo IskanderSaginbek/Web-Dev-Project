@@ -29,6 +29,15 @@ footer {
   font-size: 1.5rem;
   padding: 0;
 }
+#logos fa-icon:hover {
+  color: #7DC1FF;
+}
+#logos fa-icon:active {
+  color: #006ED3;
+}
+#logos fa-icon:disabled {
+  color: #507291;
+}
 #connect {
   color : #000000;
 }
