@@ -10,10 +10,15 @@ import {NewsComponent} from "./footer_links/news/news.component";
 import {PrivacyComponent} from "./footer_links/privacy/privacy.component";
 import {CookiesComponent} from "./footer_links/cookies/cookies.component";
 import {AboutComponent} from "./footer_links/about/about.component";
+import {MfrsComponent} from "./mfrs/mfrs.component";
+import {MfrComponent} from "./mfr/mfr.component";
+import {CategoryComponent} from "./category/category.component";
+import {ProductComponent} from "./product/product.component";
+import {SignupComponent} from "./signup/signup.component";
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
-  {path : 'categories', component: CategoriesComponent},
   {path : 'about', component: AboutComponent},
   {path : 'help', component: HelpComponent},
   {path : 'news', component: NewsComponent},
@@ -22,6 +27,13 @@ const routes: Routes = [
   {path : 'terms', component: TermsComponent},
   {path : 'cookies', component: CookiesComponent},
   {path : 'contacts', component: ContactsComponent},
+  {path : 'manufacturers', component: MfrsComponent},
+  {path : 'manufacturers/:mfrId', component: MfrComponent},
+  {path : 'categories', component: CategoriesComponent},
+  {path : 'categories/:catId', component: CategoryComponent},
+  {path : 'categories/:catId/:prodId', component: ProductComponent},
+  {path : 'signup', component: SignupComponent},
+  {path : 'login', component: LoginComponent},
   {path : '', redirectTo: 'home', pathMatch : "full"},
 ];
 

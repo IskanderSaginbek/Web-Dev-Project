@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 <h1>Categories:</h1>
 <main>
-  <div class="card" *ngFor="let c of categories">
+  <div class="card" *ngFor="let c of categories" routerLink="/categories/{{c.id}}">
     <img src="{{c.image}}">
     <div class="cat_descr">
       <h3>{{c.name}}</h3>

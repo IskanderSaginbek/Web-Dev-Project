@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Constants} from "../app.component";
+import {mfr} from "../../interfaces";
 
 @Component({
   selector: 'app-mfr',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mfr.component.css']
 })
 export class MfrComponent implements OnInit {
-
-  constructor() { }
+  public m : mfr | undefined;
+  constructor(private route : ActivatedRoute) { }
 
   ngOnInit(): void {
+    const routeParams = this.route.snapshot.paramMap;
+    const mfrId = Number(routeParams.get('mfrId'));
+    this.m = Constants.mfrs[mfrId];
   }
 
 }

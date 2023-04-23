@@ -133,7 +133,7 @@ export class Constants {
     exp_date : new Date("1970-01-01"),
     ver_num : "1234",
     address : "Malvern, Pennsylvania",
-    img : "../assets/mfrs/bccomponents.jpg",
+    img : "../assets/mfrs/bccomponents.png",
     allow_news : true,
 },
 {
@@ -154,7 +154,7 @@ export class Constants {
     exp_date : new Date("1970-01-01"),
     ver_num : "1234",
     address : "Riverside, CA",
-    img : "../assets/mfrs/bourns.jpg",
+    img : "../assets/mfrs/bourns.png",
     allow_news : true,
 },
 {
@@ -170,7 +170,7 @@ export class Constants {
     exp_date : new Date("1970-01-01"),
     ver_num : "1234",
     address : "Garden City, New York",
-    img : "../assets/mfrs/gct.jpg",
+    img : "../assets/mfrs/gct.png",
     allow_news : true,
 },
 {
@@ -206,7 +206,7 @@ export class Constants {
     exp_date : new Date("1970-01-01"),
     ver_num : "1234",
     address : "New Taipei City, Taiwan",
-    img : "../assets/mfrs/yageo.jpg",
+    img : "../assets/mfrs/yageo.png",
     allow_news : true,
 },
 ];

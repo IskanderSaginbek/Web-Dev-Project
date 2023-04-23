@@ -1,1 +1,11 @@
-<p>mfr works!</p>
+<app-header></app-header>
+<app-navbar></app-navbar>
+<main *ngIf="m">
+  <img src="{{m.img}}">
+  <h1>{{m.name}}</h1>
+  <p><b>Email address:</b> {{m.email}}</p>
+  <p><b>Phone number:</b> {{m.phone}}</p>
+  <p><b>Headquarters:</b> {{m.address}}</p>
+  <p style="text-indent: 2rem">{{m.descr}}</p>
+</main>
+<app-footer></app-footer>

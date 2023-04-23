@@ -1,1 +1,22 @@
-<p>category works!</p>
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div *ngIf="cat">
+  <div id="cat_title">
+    <h1>{{cat.name}}:</h1>
+    <p>{{cat.descr}}</p>
+  </div>
+  <main>
+    <div class="card" *ngFor="let p of prods" routerLink="/categories/{{cat.id}}/{{p.id}}">
+      <img src="{{p.image}}">
+      <div class="prod_descr">
+        <img src="{{mfrs[p.mfr_id].img}}">
+        <h3>{{p.name}}</h3><br>
+        <p><b>Product type:</b> {{p.sub_cat}}</p>
+        <p><b>Description: </b>{{p.descr_short}}</p>
+        <p><b>Cost per piece:</b> {{p.price}}$</p>
+        <p><b>In stock:</b> {{p.amount}}</p>
+      </div>
+    </div>
+  </main>
+</div>
+<app-footer></app-footer>

@@ -1,1 +1,7 @@
-<p>mfrs works!</p>
+<app-header></app-header>
+<app-navbar></app-navbar>
+<h1>Manufacturers:</h1>
+<main>
+  <img src="{{m.img}}" *ngFor="let m of mfrs" routerLink="/manufacturers/{{m.id}}">
+</main>
+<app-footer></app-footer>

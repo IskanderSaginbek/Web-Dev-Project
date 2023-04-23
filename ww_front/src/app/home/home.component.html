@@ -9,47 +9,47 @@
   </div>
   <div id="cats">
     <div class="cat">
-      <h3>Featured manufacturers</h3>
+      <h2>Featured manufacturers</h2>
       <div class="mfrs-prods">
-        <img src="../../assets/mfrs/bccomponents.jpg">
-        <img src="../../assets/mfrs/bourns.jpg">
-        <img src="../../assets/mfrs/yageo.jpg">
-        <img src="../../assets/mfrs/texas-instruments.png">
-        <img src="../../assets/mfrs/gct.jpg">
+        <img src="../../assets/mfrs/bccomponents.png" routerLink="/manufacturers/0">
+        <img src="../../assets/mfrs/bourns.png" routerLink="/manufacturers/1">
+        <img src="../../assets/mfrs/yageo.png" routerLink="/manufacturers/2">
+        <img src="../../assets/mfrs/texas-instruments.png" routerLink="/manufacturers/3">
+        <img src="../../assets/mfrs/gct.png" routerLink="/manufacturers/4">
       </div>
     </div>
     <div class="cat">
-      <h3>Newest products</h3>
+      <h2>Newest products</h2>
       <div class="mfrs-prods">
-        <div class="card">
+        <div class="card" routerLink="/categories/7/30">
           <img src="../../assets/products/MFG_USB4715-GF-A.webp">
           <div class="cat_descr">
             <h3>USB4715-GF-A</h3>
             <p>USB Connectors USBC Rec GF 6P Horizontal MidMt SMT H 4.46mm IP67, Gasket Required Separately</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" routerLink="/categories/4/22">
           <img src="../../assets/products/HTB1mmJZXInrK1RkHFrdq6xCoFXaU.jpg">
           <div class="cat_descr">
             <h3>SN74LS32DR</h3>
             <p>Logic Gates Quad 2-input Positive-OR gates</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" routerLink="/categories/4/15">
           <img src="../../assets/products/20200724_134158_976x700.webp">
           <div class="cat_descr">
             <h3>SN74HC27DR</h3>
             <p>Logic Gates Triple 3-Input Positive NOR Gates</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" routerLink="/categories/4/17">
           <img src="../../assets/products/n0020a.png">
           <div class="cat_descr">
             <h3>SN74HCS273PWR</h3>
             <p>Flip-Flops Octal D-type flip-flops with clear with Schmitt-trigger inputs</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" routerLink="/categories/1//8">
           <img src="../../assets/products/31JWTxoijwL.jpg">
           <div class="cat_descr">
             <h3>MAL217250222E3</h3>
@@ -59,9 +59,9 @@
       </div>
     </div>
     <div class="cat">
-      <h3>Product categories</h3>
+      <h2>Product categories</h2>
       <div id = "cat_wrapper">
-        <div class="card" *ngFor="let c of categories">
+        <div class="card" *ngFor="let c of categories" routerLink="/categories/{{c.id}}">
           <img src="{{c.image}}">
           <div class="cat_descr">
             <h3>{{c.name}}</h3>
@@ -75,7 +75,7 @@
       </div>
     </div>
     <div class="cat">
-      <h3>About us</h3>
+      <h2>About us</h2>
       <div class="cat_sub">
         <img src="../../assets/thisisengineering-raeng-IpTPp_aPbYE-unsplash.jpg">
         <p>Wired World&trade; is an electronics distribution company founded in Kazakhstan in the year 2023.
@@ -86,7 +86,7 @@
       </div>
     </div>
     <div class="cat">
-      <h3>Become Wired World's trusted manufacturer</h3>
+      <h2>Become Wired World's trusted manufacturer</h2>
       <div class="cat_sub">
         <p>Wired World cooperates with more than 100 manufacturers around the world. An electronics
         manufacturer company must be RoHS compliant as well as comply with other terms and conditions.
