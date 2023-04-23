@@ -1,1 +1,16 @@
-<p>signup works!</p>
+<app-header></app-header>
+<app-navbar></app-navbar>
+<form>
+  <h1>Sign up</h1>
+  <label for="email">Email:</label>
+  <input type="email" placeholder="example@example.com" maxlength="255" name="email" id="email">
+  <label for="username">Username:</label>
+  <input type="text" placeholder="example123" maxlength="255" name="username" id="username">
+  <label for="pass">Password:</label>
+  <input type="password" maxlength="255" name="pass" id="pass">
+  <label for="confirm">Confirm password:</label>
+  <input type="password" maxlength="255" name="confirm" id="confirm">
+  <span><input type="checkbox" name="keep_logged">Keep me logged in</span>
+  <button>Create account</button>
+</form>
+<app-footer></app-footer>
