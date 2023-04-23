@@ -79,3 +79,16 @@ main {
   flex-direction: column;
   justify-content: center;
 }
+.mfrs-prods {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.mfrs-prods > img {
+  width: 20%;
+  padding: 1em;
+  cursor: pointer;
+}
+.mfrs-prods .card {
+  flex : 1 1 20%;
+}
