@@ -21,6 +21,22 @@ import { PrivacyComponent } from './footer_links/privacy/privacy.component';
 import { TermsComponent } from './footer_links/terms/terms.component';
 import { CookiesComponent } from './footer_links/cookies/cookies.component';
 import { ContactsComponent } from './footer_links/contacts/contacts.component';
+import { MfrsComponent } from './mfrs/mfrs.component';
+import { MfrComponent } from './mfr/mfr.component';
+import { MfrProfileComponent } from './mfr-profile/mfr-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserPrefComponent } from './user-pref/user-pref.component';
+import { UserHistoryComponent } from './user-history/user-history.component';
+import { MfrPrefComponent } from './mfr-pref/mfr-pref.component';
+import { MfrHistoryComponent } from './mfr-history/mfr-history.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { AlterProductComponent } from './alter-product/alter-product.component';
+import { SearchComponent } from './search/search.component';
+import { NewProductsComponent } from './new-products/new-products.component';
+import { SignupComponent } from './signup/signup.component';
+import { SignupMfrComponent } from './signup-mfr/signup-mfr.component';
+import { LoginComponent } from './login/login.component';
+import { LoginMfrComponent } from './login-mfr/login-mfr.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +57,23 @@ import { ContactsComponent } from './footer_links/contacts/contacts.component';
     PrivacyComponent,
     TermsComponent,
     CookiesComponent,
-    ContactsComponent
+    ContactsComponent,
+    MfrsComponent,
+    MfrComponent,
+    MfrProfileComponent,
+    UserProfileComponent,
+    UserPrefComponent,
+    UserHistoryComponent,
+    MfrPrefComponent,
+    MfrHistoryComponent,
+    AddProductComponent,
+    AlterProductComponent,
+    SearchComponent,
+    NewProductsComponent,
+    SignupComponent,
+    SignupMfrComponent,
+    LoginComponent,
+    LoginMfrComponent
   ],
   imports: [
     BrowserModule,
