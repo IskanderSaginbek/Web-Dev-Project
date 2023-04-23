@@ -10,13 +10,17 @@ import {user,shipment,product,category,cart_item,mfr} from "../../interfaces"
 })
 export class ProductComponent implements OnInit {
   u : user = Constants.u;
-  cat : category = {name : "string",
+  cat : category = {
+    id : 0,
+    name : "string",
     descr : "string",
     descr_short : "string",
     image : "string"}
-  p : product = {cat_id : 1,
+  p : product = {
+    id : 0,
+    cat_id : 1,
     mfr_id : 1,
-    images : ["string"],
+    image : "string",
     datasheet : "string",
     name : "string",
     descr : "string",
@@ -26,7 +30,9 @@ export class ProductComponent implements OnInit {
     amount : 3,
     rating: 3,
     date : this.u.exp_date};
-  mfr : mfr = {email : "string",
+  mfr : mfr = {
+    id : 0,
+    email : "string",
     name : "string",
     password : "string",
     descr : "string",
@@ -38,11 +44,13 @@ export class ProductComponent implements OnInit {
     img : "string",
     allow_news : true,};
   shipments : shipment[] = [{
+    id : 0,
     name : "string",
     descr : "string",
     days : 1,
     price : 1,
   },{
+    id : 0,
     name : "string2",
     descr : "string2",
     days : 2,
