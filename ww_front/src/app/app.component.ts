@@ -36,7 +36,7 @@ export class Constants {
     exp_date : this.d,
     ver_num : "string",
     address : "string",
-    img : "string",
+    img : "",
     allow_news : true,
     pref_cat : [0,1],
     pref_price : [100,1000],

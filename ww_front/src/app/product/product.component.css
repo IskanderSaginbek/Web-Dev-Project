@@ -1,0 +1,46 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap : 1em;
+}
+main > div {
+  display: inline-block;
+  flex-direction: column;
+  padding: 2em;
+}
+#product-info {
+  grid-column: 1 / span 3;
+}
+#product-info > img {
+  width: 20%;
+  float : left;
+  margin: 0 1em 1em 0;
+}
+#product-info > button {
+  border-radius: .2em;
+  box-sizing: content-box;
+  padding: .2em;
+  font-size: 1.2rem;
+  width: 1em;
+  height : 1em;
+}
+span {
+  display: block;
+}
+span > img {
+  width: 8em;
+  float : right;
+  cursor: pointer;
+}
+#main-info {
+  clear: left;
+}
+#payment-info {
+  grid-column: 4 / span 2;
+}
+#comment-section {
+  grid-column: 1 / span 5;
+}
+a fa-icon {
+  padding: 0 .2em;
+}

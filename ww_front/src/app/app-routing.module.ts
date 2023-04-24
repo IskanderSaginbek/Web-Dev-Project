@@ -16,6 +16,8 @@ import {CategoryComponent} from "./category/category.component";
 import {ProductComponent} from "./product/product.component";
 import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
+import {SignupMfrComponent} from "./signup-mfr/signup-mfr.component";
+import {LoginMfrComponent} from "./login-mfr/login-mfr.component";
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
@@ -34,6 +36,8 @@ const routes: Routes = [
   {path : 'categories/:catId/:prodId', component: ProductComponent},
   {path : 'signup', component: SignupComponent},
   {path : 'login', component: LoginComponent},
+  {path : 'signup-mfr', component: SignupMfrComponent},
+  {path : 'login-mfr', component: LoginMfrComponent},
   {path : '', redirectTo: 'home', pathMatch : "full"},
 ];
 

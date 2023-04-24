@@ -1,29 +1,32 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
-<main>
-  <div>
+<main *ngIf="p && c && m">
+  <div id="product-info">
     <img src="{{p.image}}">
-    <p>{{p.name}}</p>
-    <p>Category: {{cat.name}}</p>
-    <p>{{p.sub_cat}}</p>
-    <a href="{{p.datasheet}}">Datasheet <fa-icon [icon]="fapdf"></fa-icon></a>
-    <p>p.descr</p>
-    <p>Price: {{p.price}}$</p>
-    <p>Available: <b>{{p.amount}}</b></p>
-    <p>Manufacturer: {{mfr.name}}</p> <img src="{{mfr.img}}">
-    <p>Date published: {{p.date}}</p>
-    <p>Rating: {{p.rating}}/5.0</p>
-    <button>Share</button>
+    <b>{{p.name}}</b>
+    <p><b>Category:</b> {{c.name}}</p>
+    <p><b>Product type:</b> {{p.sub_cat}}</p>
+    <span><p><b>Manufacturer:</b> {{m.name}}</p> <img src="{{m.img}}" routerLink="/manufacturers/{{m.id}}"></span>
+    <a href="{{p.datasheet}}"><b>Datasheet</b> <fa-icon [icon]="fapdf" style="color:red"></fa-icon></a>
+    <p><b>Rating:</b> {{p.rating}}/5</p>
+    <button><fa-icon [icon]="faShare"></fa-icon></button>
+    <div id="main-info">
+      <p *ngIf="p.descr">{{p.descr}}</p>
+      <p *ngIf="!p.descr">{{p.descr_short}}</p>
+      <p><b>Price per piece:</b> {{p.price}}$</p>
+      <p><b>Available:</b> {{p.amount}}</p>
+      <p><b>Date published:</b> {{p.date}}</p>
+    </div>
   </div>
-  <div>
+  <div id="payment-info">
     <input type="number" name="amount">
     <select>
       <option *ngFor="let s of shipments">{{s.name}} - {{s.price}}</option>
     </select>
     <button>Add to cart</button>
   </div>
-  <div>
-    <img src="{{u.img}}"><fa-icon [icon]="fauser"></fa-icon>
+  <div id="comment-section">
+    <img src="{{u.img}}" *ngIf="u.img"><fa-icon [icon]="fauser"  *ngIf="!u.img"></fa-icon>
     <input type="text" name="com" maxlength="255">
     <button>Send</button>
   </div>
