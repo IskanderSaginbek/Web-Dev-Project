@@ -110,6 +110,24 @@ button:disabled {
   background-color: #507291;
   color : #FBFCFF;
 }
+.orange {
+  background-color: #FFC700;
+  color : #000000;
+  cursor : pointer;
+  padding: .5em;
+}
+.orange:hover {
+  background-color: #FFE790;
+  color : #000000;
+}
+.orange:active {
+  background-color: #CFA200;
+  color : #000000;
+}
+.orange:disabled {
+  background-color: #746940;
+  color : #000000;
+}
 
 form h1 {
   margin-bottom: 1em;

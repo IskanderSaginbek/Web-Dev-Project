@@ -11,6 +11,7 @@ export interface product {
   price : number;
   amount : number;
   rating: number; //added rating
+  ratings_num : number;
   date : Date;
 }
 export interface category {

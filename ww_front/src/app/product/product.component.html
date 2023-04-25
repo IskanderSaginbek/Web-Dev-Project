@@ -7,28 +7,50 @@
     <p><b>Category:</b> {{c.name}}</p>
     <p><b>Product type:</b> {{p.sub_cat}}</p>
     <span><p><b>Manufacturer:</b> {{m.name}}</p> <img src="{{m.img}}" routerLink="/manufacturers/{{m.id}}"></span>
-    <a href="{{p.datasheet}}"><b>Datasheet</b> <fa-icon [icon]="fapdf" style="color:red"></fa-icon></a>
-    <p><b>Rating:</b> {{p.rating}}/5</p>
-    <button><fa-icon [icon]="faShare"></fa-icon></button>
+    <a href="{{p.datasheet}}" target="_blank"><b>Datasheet</b> <fa-icon [icon]="fapdf" style="color:red"></fa-icon></a>
+    <p><b>Rating:</b> {{p.rating}}/5 (based on {{p.ratings_num}} ratings)</p>
+    <b>Rate the product: </b>
+    <div class="star-rating">
+      <div class="star-rating__wrap">
+        <input class="star-rating__input" id="star-rating-5" type="radio" name="rating" value="5">
+        <label class="star-rating__ico" for="star-rating-5" title="5 out of 5 stars"></label>
+        <input class="star-rating__input" id="star-rating-4" type="radio" name="rating" value="4">
+        <label class="star-rating__ico" for="star-rating-4" title="4 out of 5 stars"></label>
+        <input class="star-rating__input" id="star-rating-3" type="radio" name="rating" value="3">
+        <label class="star-rating__ico" for="star-rating-3" title="3 out of 5 stars"></label>
+        <input class="star-rating__input" id="star-rating-2" type="radio" name="rating" value="2">
+        <label class="star-rating__ico" for="star-rating-2" title="2 out of 5 stars"></label>
+        <input class="star-rating__input" id="star-rating-1" type="radio" name="rating" value="1">
+        <label class="star-rating__ico" for="star-rating-1" title="1 out of 5 stars"></label>
+      </div>
+      <button>Rate</button>
+    </div>
+
     <div id="main-info">
       <p *ngIf="p.descr">{{p.descr}}</p>
       <p *ngIf="!p.descr">{{p.descr_short}}</p>
       <p><b>Price per piece:</b> {{p.price}}$</p>
       <p><b>Available:</b> {{p.amount}}</p>
       <p><b>Date published:</b> {{p.date}}</p>
+      <button id="share">Share <fa-icon [icon]="faShare"></fa-icon></button>
     </div>
   </div>
   <div id="payment-info">
-    <input type="number" name="amount">
+    <span><label for="quantity">Enter quantity: </label>
+    <input type="number" name="amount" id="quantity" min="1"></span>
+    <span>Choose shipment method:
     <select>
       <option *ngFor="let s of shipments">{{s.name}} - {{s.price}}</option>
-    </select>
-    <button>Add to cart</button>
+    </select></span>
+    <button class="orange">Add to cart</button>
   </div>
   <div id="comment-section">
-    <img src="{{u.img}}" *ngIf="u.img"><fa-icon [icon]="fauser"  *ngIf="!u.img"></fa-icon>
-    <input type="text" name="com" maxlength="255">
-    <button>Send</button>
+    <h3>Leave a comment:</h3>
+    <form>
+      <span id="avatar"><img src="{{u.img}}" *ngIf="u.img"><fa-icon [icon]="fauser"  *ngIf="!u.img"></fa-icon></span>
+      <textarea cols="100" rows="5" maxlength="500"></textarea>
+      <button>Send</button>
+    </form>
   </div>
 </main>
 <app-footer></app-footer>
