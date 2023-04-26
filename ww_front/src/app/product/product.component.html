@@ -32,7 +32,19 @@
       <p><b>Price per piece:</b> {{p.price}}$</p>
       <p><b>Available:</b> {{p.amount}}</p>
       <p><b>Date published:</b> {{p.date}}</p>
-      <button id="share">Share <fa-icon [icon]="faShare"></fa-icon></button>
+      <button id="share" (click)="toggle_share()">Share <fa-icon [icon]="faShare"></fa-icon></button>
+      <div id="share-popup" [ngStyle]="{'display':share_vis}">
+        <div id="share-menu">
+          <fa-icon [icon]="faX" id="X" (click)="toggle_share()"></fa-icon>
+          <h3>Share via:</h3>
+          <span>
+          <a (click)="share(0)" title="Telegram"><fa-icon [icon]="faTG"></fa-icon></a>
+          <a (click)="share(1)" title="Whatsapp"><fa-icon [icon]="faWA"></fa-icon></a>
+          <a (click)="share(2)" title="Facebook"><fa-icon [icon]="faFB"></fa-icon></a>
+          <a (click)="share(3)" title="Copy link"><fa-icon [icon]="faChain"></fa-icon></a>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
   <div id="payment-info">
