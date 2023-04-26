@@ -16,19 +16,8 @@ export class ProductComponent implements OnInit {
   p : product | undefined;
   c : category | undefined;
   m : mfr | undefined;
-  shipments : shipment[] = [{
-    id : 0,
-    name : "string",
-    descr : "string",
-    days : 1,
-    price : 1,
-  },{
-    id : 0,
-    name : "string2",
-    descr : "string2",
-    days : 2,
-    price : 2,
-  },]//Constants.shipments;
+  s: number | undefined;
+  shipments : shipment[] = Constants.shipments;
   fapdf = faFilePdf;
   fauser = faUserCircle;
   faShare = faShareAlt;
@@ -46,6 +35,7 @@ export class ProductComponent implements OnInit {
     this.p = Constants.mock_products[pId];
     this.c = Constants.cats[this.p.cat_id];
     this.m = Constants.mfrs[this.p.mfr_id];
+    this.s = 2;
   }
 
   share(site : number): void {

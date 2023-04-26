@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {FormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -75,11 +76,12 @@ import { LoginMfrComponent } from './login-mfr/login-mfr.component';
     LoginComponent,
     LoginMfrComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

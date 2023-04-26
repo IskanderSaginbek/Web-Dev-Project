@@ -223,7 +223,7 @@ export class Constants {
     price : 0.5,
     amount : 1000,
     rating : 4.5,
-    ratings_num : 2,
+    ratings_num : 11,
     date : new Date("1970-01-01"),
   },
     {
@@ -239,7 +239,7 @@ export class Constants {
       price : 0.5,
       amount : 1100,
       rating : 4.6,
-      ratings_num : 2,
+      ratings_num : 5,
       date : new Date("1980-01-01"),
     },
     {
@@ -255,7 +255,7 @@ export class Constants {
       price : 0.5,
       amount : 1000,
       rating : 4.7,
-      ratings_num : 2,
+      ratings_num : 7,
       date : new Date("1990-01-01"),
     },
     {
@@ -286,7 +286,7 @@ export class Constants {
       price : 0.7,
       amount : 0,
       rating : 5.0,
-      ratings_num : 2,
+      ratings_num : 51,
       date : new Date("2010-01-01"),
     },
     {
@@ -302,7 +302,7 @@ export class Constants {
       price : 6.5,
       amount : 1200,
       rating : 4.8,
-      ratings_num : 2,
+      ratings_num : 42,
       date : new Date("2020-01-01"),
     },
 
@@ -318,7 +318,7 @@ export class Constants {
       price : 1.8,
       amount : 5000,
       rating : 4.75,
-      ratings_num : 2,
+      ratings_num : 924,
       date : new Date("2015-01-01"),
     },
     {
@@ -333,7 +333,7 @@ export class Constants {
       price : 4.28,
       amount : 924,
       rating : 4.9,
-      ratings_num : 2,
+      ratings_num : 42,
       date : new Date("2023-01-01"),
     },
     {
@@ -348,7 +348,7 @@ export class Constants {
       price : 4.22,
       amount : 813,
       rating : 4.8,
-      ratings_num : 2,
+      ratings_num : 8,
       date : new Date("2023-01-02"),
     },
 
@@ -365,7 +365,7 @@ export class Constants {
       price : 6.0,
       amount : 500,
       rating : 4.2,
-      ratings_num : 2,
+      ratings_num : 42,
       date : new Date("2020-02-02"),
     },
     {
@@ -381,7 +381,7 @@ export class Constants {
       price : 11.0,
       amount : 200,
       rating : 4.5,
-      ratings_num : 2,
+      ratings_num : 51,
       date : new Date("2020-02-05"),
     },
 
@@ -398,7 +398,7 @@ export class Constants {
       price : 1.6,
       amount : 2000,
       rating : 4.9,
-      ratings_num : 2,
+      ratings_num : 777,
       date : new Date("2020-02-05"),
     },
     {
@@ -414,7 +414,7 @@ export class Constants {
       price : 1.45,
       amount : 3000,
       rating : 4.8,
-      ratings_num : 2,
+      ratings_num : 99,
       date : new Date("2020-02-03"),
     },
     {
@@ -429,7 +429,7 @@ export class Constants {
       price : 1.74,
       amount : 10000,
       rating : 4.9,
-      ratings_num : 2,
+      ratings_num : 3,
       date : new Date("2021-02-05"),
     },
 
@@ -461,7 +461,7 @@ export class Constants {
       price : 0.461,
       amount : 350,
       rating : 5.0,
-      ratings_num : 2,
+      ratings_num : 42,
       date : new Date("2023-01-01"),
     },
     {
@@ -476,7 +476,7 @@ export class Constants {
       price : 0.461,
       amount : 1000,
       rating : 4.0,
-      ratings_num : 2,
+      ratings_num : 42,
       date : new Date("2022-01-01"),
     },
     {
@@ -492,7 +492,7 @@ export class Constants {
       price : 0.61,
       amount : 500,
       rating : 5.0,
-      ratings_num : 2,
+      ratings_num : 924,
       date : new Date("2023-03-01"),
     },
     {
@@ -508,7 +508,7 @@ export class Constants {
       price : 0.61,
       amount : 800,
       rating : 4.8,
-      ratings_num : 2,
+      ratings_num : 51,
       date : new Date("2021-01-01"),
     },
     {
@@ -523,7 +523,7 @@ export class Constants {
       price : 0.8,
       amount : 500,
       rating : 4.8,
-      ratings_num : 2,
+      ratings_num : 42,
       date : new Date("2019-01-01"),
     },
     {
@@ -538,7 +538,7 @@ export class Constants {
       price : 0.92,
       amount : 10,
       rating : 3.5,
-      ratings_num : 2,
+      ratings_num : 7,
       date : new Date("2018-01-01"),
     },
     {
@@ -553,7 +553,7 @@ export class Constants {
       price : 0.78,
       amount : 5000,
       rating : 5.0,
-      ratings_num : 2,
+      ratings_num : 1,
       date : new Date("2010-01-01"),
     },
     {
@@ -568,7 +568,7 @@ export class Constants {
       price : 0.65,
       amount : 1000,
       rating : 3.0,
-      ratings_num : 2,
+      ratings_num : 51,
       date : new Date("2023-01-01"),
     },
     {
@@ -583,7 +583,7 @@ export class Constants {
       price : 0.799,
       amount : 2000,
       rating : 2.5,
-      ratings_num : 2,
+      ratings_num : 52,
       date : new Date("2013-01-01"),
     },
 
@@ -600,7 +600,7 @@ export class Constants {
       price : 0.2,
       amount : 10000,
       rating : 4.0,
-      ratings_num : 2,
+      ratings_num : 1,
       date : new Date("2015-01-01"),
     },
     {
@@ -616,7 +616,7 @@ export class Constants {
       price : 0.6,
       amount : 1000,
       rating : 4.5,
-      ratings_num : 2,
+      ratings_num : 42,
       date : new Date("2014-01-01"),
     },
     {
@@ -632,7 +632,7 @@ export class Constants {
       price : 0.6,
       amount : 1000,
       rating : 4.5,
-      ratings_num : 2,
+      ratings_num : 924,
       date : new Date("2014-01-01"),
     },
 
@@ -661,7 +661,7 @@ export class Constants {
       price : 3.999,
       amount : 5,
       rating : 4.5,
-      ratings_num : 2,
+      ratings_num : 421,
       date : new Date("2008-01-01"),
     },
     {
@@ -675,7 +675,7 @@ export class Constants {
       price : 0.199,
       amount : 300,
       rating : 3.5,
-      ratings_num : 2,
+      ratings_num : 42,
       date : new Date("2005-01-01"),
     },
 
@@ -692,7 +692,7 @@ export class Constants {
       price : 1.499,
       amount : 1399,
       rating : 4.8,
-      ratings_num : 2,
+      ratings_num : 8,
       date : new Date("2023-01-01"),
     },
     {
@@ -708,7 +708,7 @@ export class Constants {
       price : 1.199,
       amount : 1229,
       rating : 4.5,
-      ratings_num : 2,
+      ratings_num : 4,
       date : new Date("2022-01-01"),
     },
     {
@@ -723,7 +723,7 @@ export class Constants {
   price : 6.299,
   amount : 271,
   rating : 4.2,
-      ratings_num : 2,
+      ratings_num : 8,
   date : new Date("2021-01-01"),
 },
 
@@ -740,7 +740,7 @@ export class Constants {
   price : 2.799,
   amount : 300,
   rating : 4.9,
-  ratings_num : 2,
+  ratings_num : 924,
   date : new Date("2017-01-01"),
 },
 {
@@ -756,7 +756,7 @@ export class Constants {
   price : 11.099,
   amount : 500,
   rating : 4.7,
-  ratings_num : 2,
+  ratings_num : 7,
   date : new Date("2012-01-01"),
 },
 
@@ -772,7 +772,7 @@ export class Constants {
   price : 10.799,
   amount : 30,
   rating : 4.9,
-  ratings_num : 2,
+  ratings_num : 5,
   date : new Date("2018-01-01"),
 },
 {
@@ -787,8 +787,31 @@ export class Constants {
   price : 5.799,
   amount : 3,
   rating : 4.5,
-  ratings_num : 2,
+  ratings_num : 20,
   date : new Date("2018-01-01"),
 },
 ];
+  public static shipments : shipment[] = [{
+    id : 0,
+    name : "Same day delivery",
+    descr : "Your package will be delivered to you in a single day. The package can be delivered anywhere in the World in less" +
+      "than a day which requires enormous extra resources",
+    days : 1,
+    price : 259,
+  },{
+    id : 1,
+    name : "2 day delivery",
+    descr : "Your package will be delivered to you in 2 days. The package can be delivered anywhere in the World in less" +
+      "than 2 days which requires extra resources",
+    days : 2,
+    price : 119,
+  },{
+    id : 2,
+    name : "Freight shipping",
+    descr : "Your package will be delivered to you in roughly 7 days. The package can be delivered anywhere in the World in less" +
+      "than a week. This is the conventional shipment method.",
+    days : 7,
+    price : 49,
+  },
+  ];
 }

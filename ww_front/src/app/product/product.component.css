@@ -142,9 +142,14 @@ a fa-icon {
   top: 0;
   padding: 0;
   margin: 0;
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0,0,0,0);
   justify-content: center;
   align-items: center;
+  transition: 400ms;
+}
+#share-popup:hover {
+  background-color: rgba(0,0,0,.5);
+  transition: 400ms;
 }
 #share-menu {
   width : 8em;
@@ -162,9 +167,10 @@ a fa-icon {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  margin-bottom: .5em;
 }
 #share-menu h3 {
-  margin: .5em 0;
+  margin: 0 0 .5em 0;
   text-indent: 0;
 }
 #X {
