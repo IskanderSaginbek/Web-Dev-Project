@@ -18,6 +18,9 @@ import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
 import {SignupMfrComponent} from "./signup-mfr/signup-mfr.component";
 import {LoginMfrComponent} from "./login-mfr/login-mfr.component";
+import {BasketComponent} from "./basket/basket.component";
+import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {MfrProfileComponent} from "./mfr-profile/mfr-profile.component";
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
@@ -38,6 +41,9 @@ const routes: Routes = [
   {path : 'login', component: LoginComponent},
   {path : 'signup-mfr', component: SignupMfrComponent},
   {path : 'login-mfr', component: LoginMfrComponent},
+  {path : 'basket', component: BasketComponent},
+  {path : 'profile', component: UserProfileComponent},
+  {path : 'profile-mfr', component: MfrProfileComponent},
   {path : '', redirectTo: 'home', pathMatch : "full"},
 ];
 

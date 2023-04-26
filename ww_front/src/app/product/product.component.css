@@ -181,3 +181,25 @@ a fa-icon {
   cursor: pointer;
   font-size: .8em;
 }
+
+@keyframes msg_popup {
+  0% {bottom: -10vh;}
+  20% {bottom: 0;}
+  80% {bottom: 0;}
+  100% {bottom: -10vh;}
+}
+#message {
+  border-radius: .3em;
+  text-align: center;
+  background-color: #EBECED;
+  padding: .5em 0;
+  border-bottom: none;
+  width: 20vw;
+  position: fixed;
+  left : 40vw;
+  bottom: -10vh;
+  animation-name: msg_popup;
+  animation-duration: 5s;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+}

@@ -29,7 +29,8 @@ nav a:hover {
   color : inherit;
 }
 #nav-cart {
-  display: none;
+  display: flex;
+  cursor: pointer;
 }
 #nav-signup-mfr {
   display: none;

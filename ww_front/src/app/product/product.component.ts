@@ -4,6 +4,7 @@ import {Constants} from "../app.component";
 import {user,shipment,product,category,cart_item,mfr} from "../../interfaces"
 import {ActivatedRoute} from "@angular/router";
 import {faFacebook, faTelegram, faWhatsapp} from "@fortawesome/free-brands-svg-icons";
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-product',
@@ -16,8 +17,6 @@ export class ProductComponent implements OnInit {
   p : product | undefined;
   c : category | undefined;
   m : mfr | undefined;
-  s: number | undefined;
-  shipments : shipment[] = Constants.shipments;
   fapdf = faFilePdf;
   fauser = faUserCircle;
   faShare = faShareAlt;
@@ -27,7 +26,12 @@ export class ProductComponent implements OnInit {
   faChain = faLink;
   faX = faTimes;
   share_vis : string = "none";
-  constructor(private route : ActivatedRoute) { }
+  msg_vis : string = "paused";
+  msg_clr : string = "green";
+  msg_text : string = "Product added to cart";
+  msg_anim : string = "msg_popup";
+  q : number = 1;
+  constructor(private route : ActivatedRoute, private cartService : CartService) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -35,7 +39,6 @@ export class ProductComponent implements OnInit {
     this.p = Constants.mock_products[pId];
     this.c = Constants.cats[this.p.cat_id];
     this.m = Constants.mfrs[this.p.mfr_id];
-    this.s = 2;
   }
 
   share(site : number): void {
@@ -62,5 +65,26 @@ export class ProductComponent implements OnInit {
   toggle_share() : void {
     if (this.share_vis=="none") this.share_vis = "flex";
     else this.share_vis = "none";
+  }
+  addToCart(p : product,q : number) {
+    if (q < 0 || q > p.amount) {
+      this.msg_anim = "msg_popup";
+      this.msg_vis="running";
+      this.msg_text="Invalid amount";
+      this.msg_clr="#ED1313"
+    }
+    else if(this.cartService.getCart().some(o => o.prod_id === p.id)) {
+      this.msg_anim = "msg_popup";
+      this.msg_vis="running";
+      this.msg_text="Product already added";
+      this.msg_clr="#FFC000"
+    }
+    else {
+      this.cartService.addToCart(p,q);
+      this.msg_anim = "msg_popup";
+      this.msg_vis="running";
+      this.msg_text="Product added to cart";
+      this.msg_clr="#00D415"
+    }
   }
 }

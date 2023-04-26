@@ -8,7 +8,7 @@
     <p><b>Product type:</b> {{p.sub_cat}}</p>
     <span><p><b>Manufacturer:</b> {{m.name}}</p> <img src="{{m.img}}" routerLink="/manufacturers/{{m.id}}"></span>
     <a href="{{p.datasheet}}" target="_blank"><b>Datasheet</b> <fa-icon [icon]="fapdf" style="color:red"></fa-icon></a>
-    <p><b>Rating:</b> {{p.rating}}/5 (based on <b>{{p.ratings_num}}</b> ratings)</p>
+    <p><b>Rating:</b> {{p.rating.toPrecision(2)}}/5 (based on <b>{{p.ratings_num}}</b> ratings)</p>
     <b>Rate the product: </b>
     <div class="star-rating">
       <div class="star-rating__wrap">
@@ -45,19 +45,15 @@
           </span>
         </div>
       </div>
+      <div id="message" [ngStyle]="{'animation-play-state' : msg_vis, 'color' : msg_clr, 'animation-name' : msg_anim}" (animationend)="msg_anim='none'">
+        <b>{{msg_text}}</b>
+      </div>
     </div>
   </div>
   <div id="payment-info">
     <span><label for="quantity">Enter quantity: </label>
-    <input type="number" name="amount" id="quantity" min="1"></span>
-    <span>Choose shipment method:
-    <select [(ngModel)]="s">
-      <option value="{{s.id}}" *ngFor="let s of shipments">{{s.name}}</option>
-    </select></span>
-    <p *ngIf="s && shipments">{{shipments[s].name}}: {{shipments[s].descr}}</p>
-    <p *ngIf="s && shipments">Price: {{shipments[s].price}}$</p>
-    <p *ngIf="s && shipments">Delivery in {{shipments[s].days}} days</p>
-    <button class="orange">Add to cart</button>
+    <input type="number" name="amount" id="quantity" min="1" value="1" [(ngModel)]="q"></span>
+    <button class="orange" (click)="addToCart(p,q)">Add to cart</button>
   </div>
   <div id="comment-section">
     <h3>Leave a comment:</h3>

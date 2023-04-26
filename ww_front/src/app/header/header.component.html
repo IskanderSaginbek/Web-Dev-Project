@@ -14,12 +14,13 @@
       </select>
       <input type="radio" name="order" class="order" id="order-up">
       <button onclick="document.getElementById('order-up').checked = true"><fa-icon [icon]="faUp"></fa-icon></button>
-      <input type="radio" name="order" class="order" id="order-down">
+      <input type="radio" name="order" class="order" id="order-down" checked="true">
       <button onclick="document.getElementById('order-down').checked = true"><fa-icon [icon]="faDown"></fa-icon></button>
     </div>
     <label>Category:</label>
     <div class="sub_search">
       <select>
+        <option value="any" selected>Any</option>
         <option value="{{c.name}}" *ngFor="let c of categories">{{c.name}}</option>
       </select>
       <input type="text" placeholder="Part no./Keyword">

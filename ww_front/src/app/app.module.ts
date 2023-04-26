@@ -12,7 +12,6 @@ import { FooterComponent } from './footer/footer.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
-import { ShippingsComponent } from './shippings/shippings.component';
 import { BasketComponent } from './basket/basket.component';
 import { AboutComponent } from './footer_links/about/about.component';
 import { HelpComponent } from './footer_links/help/help.component';
@@ -49,7 +48,6 @@ import { LoginMfrComponent } from './login-mfr/login-mfr.component';
     CategoriesComponent,
     CategoryComponent,
     ProductComponent,
-    ShippingsComponent,
     BasketComponent,
     AboutComponent,
     HelpComponent,

@@ -31,7 +31,8 @@ export interface comment {
 export interface cart_item {
   id : number;
   prod_id : number;
-  ship_id : number;
+  name : string;
+  thumbnail : string;
   quantity : number;
   price : number;
 }

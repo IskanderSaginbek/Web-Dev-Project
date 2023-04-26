@@ -1,0 +1,30 @@
+.item-wrapper{
+  display: inline-block;
+  background-color: #EFEFEF;
+  border: solid 1px;
+  padding: .5em;
+  margin : 1em 0;
+}
+.item-wrapper img {
+  width: 5em;
+  height: 5em;
+  float : left;
+  margin : 0 .5em
+}
+.item {
+  display: inline-block;
+  margin-right: .5em;
+}
+main {
+  padding: 2rem;
+  min-height: 50vh;
+}
+#empty {
+  width: fit-content;
+  display: block;
+  margin: auto;
+}
+#checkout {
+  display : block;
+  border-radius: .3em;
+}

@@ -63,6 +63,10 @@ input[type='checkbox'] {
   background-color: #AEAEAE;
   transition: 400ms;
 }
+.card img {
+  border-radius: .5em;
+  max-width: 100%;
+}
 
 .footer-link {
   min-height : 80vh;
@@ -92,6 +96,7 @@ input[type='checkbox'] {
 .subfooter-wrapper ul, ol {
   padding-left: 2.5rem;
 }
+
 button {
   background-color: #0079E8;
   color : #FBFCFF;

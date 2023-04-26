@@ -1,1 +1,23 @@
-<p>basket works!</p>
+<app-header></app-header>
+<app-navbar></app-navbar>
+<main>
+  <span>Choose shipment method:
+    <select [(ngModel)]="s">
+      <option value="{{s.id}}" *ngFor="let s of shipments">{{s.name}}</option>
+    </select></span>
+  <p *ngIf="s && shipments">{{shipments[s].name}}: {{shipments[s].descr}}</p>
+  <p *ngIf="s && shipments">Price: {{shipments[s].price}}$</p>
+  <p *ngIf="s && shipments">Delivery in {{shipments[s].days}} days</p>
+  <b *ngIf="items.length==0" id="empty">Your cart is empty</b>
+  <div *ngFor="let i of items" class="item-wrapper">
+    <img src="{{i.thumbnail}}">
+    <div class="item">
+      <h5>{{i.name}}</h5>
+      <p><b>Price per piece:</b> {{i.price}}$</p>
+      <p><b>Quantity:</b> <input type="number" name="amount" id="quantity" min="1" value="1" [(ngModel)]="i.quantity"></p>
+      <b style="font-weight: 800">Total cost: {{(i.price*i.quantity).toFixed(3)}}$</b>
+    </div>
+  </div>
+  <button *ngIf="items.length>0" id="checkout">Checkout</button>
+</main>
+<app-footer></app-footer>
