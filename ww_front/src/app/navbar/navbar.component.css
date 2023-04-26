@@ -31,3 +31,9 @@ nav a:hover {
 #nav-cart {
   display: none;
 }
+#nav-signup-mfr {
+  display: none;
+}
+#nav-login-mfr {
+  display: none;
+}

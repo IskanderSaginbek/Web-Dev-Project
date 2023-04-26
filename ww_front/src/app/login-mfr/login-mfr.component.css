@@ -1,0 +1,9 @@
+:host ::ng-deep #nav-login {
+  display: none;
+}
+:host ::ng-deep #nav-signup {
+  display: none;
+}
+:host ::ng-deep #nav-signup-mfr {
+  display: inline-block;
+}

@@ -57,3 +57,10 @@ header {
   flex-direction: row;
   align-items: stretch;
 }
+
+.order {
+  appearance: none;
+}
+.order:checked + button {
+  background-color : #00D415 !important;
+}

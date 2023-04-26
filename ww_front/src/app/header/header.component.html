@@ -12,8 +12,10 @@
         <option>Date published</option>
         <option>Price</option>
       </select>
-      <button><fa-icon [icon]="faUp"></fa-icon></button>
-      <button><fa-icon [icon]="faDown"></fa-icon></button>
+      <input type="radio" name="order" class="order" id="order-up">
+      <button onclick="document.getElementById('order-up').checked = true"><fa-icon [icon]="faUp"></fa-icon></button>
+      <input type="radio" name="order" class="order" id="order-down">
+      <button onclick="document.getElementById('order-down').checked = true"><fa-icon [icon]="faDown"></fa-icon></button>
     </div>
     <label>Category:</label>
     <div class="sub_search">

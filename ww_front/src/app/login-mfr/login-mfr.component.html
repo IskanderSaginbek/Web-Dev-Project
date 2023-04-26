@@ -1,1 +1,13 @@
-<p>login-mfr works!</p>
+<app-header></app-header>
+<app-navbar></app-navbar>
+<form>
+  <h1>Log in (Manufacturer)</h1>
+  <label for="email_username">Email or Company name:</label>
+  <input type="email_username" placeholder="example@example.com" maxlength="255" name="email_username" id="email_username">
+  <label for="pass">Password:</label>
+  <input type="password" maxlength="255" name="pass" id="pass">
+  <span><input type="checkbox" name="keep_logged">Keep me logged in</span>
+  <span><a routerLink="/signup-mfr">Don't have an account? Sign up</a></span>
+  <button>Log in</button>
+</form>
+<app-footer></app-footer>

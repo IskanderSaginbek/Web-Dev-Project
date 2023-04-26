@@ -110,7 +110,7 @@ a fa-icon {
   float: right;
   padding-left: 2px;
   cursor: pointer;
-  color: #FFB300;
+  color: #000000;
 }
 .star-rating__ico:last-child{
   padding-left: 0;
@@ -128,6 +128,8 @@ a fa-icon {
 .star-rating__ico:hover ~ .star-rating__ico:before,
 .star-rating__input:checked ~ .star-rating__ico:before
 {
+  color: #FFC700;
+  -webkit-text-stroke: .05em #000000;
   content: "\2605";
   font-size: 1.5em;
 }

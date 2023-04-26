@@ -15,6 +15,7 @@
         <p><b>Description: </b>{{p.descr_short}}</p>
         <p><b>Cost per piece:</b> {{p.price}}$</p>
         <p><b>In stock:</b> {{p.amount}}</p>
+        <p *ngIf="p.amount==0" style="color: red"><b>NOT IN STOCK</b></p>
       </div>
     </div>
   </main>

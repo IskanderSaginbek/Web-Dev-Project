@@ -21,6 +21,7 @@ main {
   backdrop-filter: brightness(70%) blur(.5em);
 }
 #hero *{
+  font-family: Garamond;
   text-align: center;
   color : #FBFCFF;
   padding-bottom: 1em;
