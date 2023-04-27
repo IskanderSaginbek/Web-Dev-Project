@@ -14,6 +14,7 @@ export class CartService {
       id : this.items.length+1,
       prod_id : p.id,
       quantity : q,
+      available : p.amount,
       price : p.price,
       thumbnail : p.image,
       name : p.name

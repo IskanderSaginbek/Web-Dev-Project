@@ -67,7 +67,7 @@ export class ProductComponent implements OnInit {
     else this.share_vis = "none";
   }
   addToCart(p : product,q : number) {
-    if (q < 0 || q > p.amount) {
+    if (q < 0 || q > p.amount || !q) {
       this.msg_anim = "msg_popup";
       this.msg_vis="running";
       this.msg_text="Invalid amount";

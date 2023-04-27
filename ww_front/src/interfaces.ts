@@ -34,6 +34,7 @@ export interface cart_item {
   name : string;
   thumbnail : string;
   quantity : number;
+  available : number;
   price : number;
 }
 export interface history_item {

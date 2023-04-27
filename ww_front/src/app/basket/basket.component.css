@@ -6,8 +6,8 @@
   margin : 1em 0;
 }
 .item-wrapper img {
-  width: 5em;
-  height: 5em;
+  width: 6em;
+  height: 6em;
   float : left;
   margin : 0 .5em
 }
@@ -25,6 +25,10 @@ main {
   margin: auto;
 }
 #checkout {
+  margin-top: .5em;
   display : block;
   border-radius: .3em;
+}
+.bold {
+  font-weight: 800;
 }
