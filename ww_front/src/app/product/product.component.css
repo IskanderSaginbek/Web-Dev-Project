@@ -185,18 +185,18 @@ a fa-icon {
 @keyframes msg_popup {
   0% {bottom: -10vh;}
   20% {bottom: 0;}
-  80% {bottom: 0;}
+  90% {bottom: 0;}
   100% {bottom: -10vh;}
 }
 #message {
-  border-radius: .3em;
+  border-radius: .3em .3em 0 0;
   text-align: center;
   background-color: #EBECED;
   padding: .5em 0;
   border-bottom: none;
-  width: 30vw;
+  width: 40vw;
   position: fixed;
-  left : 35vw;
+  left : 30vw;
   bottom: -10vh;
   animation-name: msg_popup;
   animation-duration: 5s;

@@ -18,8 +18,6 @@ export class CategoryComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     const catId = Number(routeParams.get('catId'));
     this.cat = Constants.cats[catId];
-    console.log(Constants.mock_products);
-    console.log(catId);
     this.prods = Constants.mock_products.filter(p => p.cat_id === catId);
   }
 

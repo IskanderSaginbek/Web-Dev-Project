@@ -13,6 +13,7 @@ export class CartService {
     this.c = {
       id : this.items.length+1,
       prod_id : p.id,
+      cat_id : p.cat_id,
       quantity : q,
       available : p.amount,
       price : p.price,
