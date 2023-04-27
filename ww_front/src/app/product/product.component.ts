@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {faFilePdf, faLink, faShareAlt, faTimes, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import {Constants} from "../app.component";
 import {user,shipment,product,category,cart_item,mfr} from "../../interfaces"
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {faFacebook, faTelegram, faWhatsapp} from "@fortawesome/free-brands-svg-icons";
 import {CartService} from "../services/cart.service";
 
@@ -31,14 +31,25 @@ export class ProductComponent implements OnInit {
   msg_text : string = "Product added to cart";
   msg_anim : string = "msg_popup";
   q : number = 1;
-  constructor(private route : ActivatedRoute, private cartService : CartService) { }
+  constructor(private route : ActivatedRoute, private cartService : CartService, private router : Router) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const pId = Number(routeParams.get('prodId'));
+    const cId = Number(routeParams.get('catId'));
     this.p = Constants.mock_products[pId];
-    this.c = Constants.cats[this.p.cat_id];
-    this.m = Constants.mfrs[this.p.mfr_id];
+    if (!this.p || cId != this.p.cat_id) {
+      this.router.navigate(['/404'], {
+        skipLocationChange: true,
+        state: {
+          reason : "Unable to locate product"
+        }
+      });
+    }
+    else {
+      this.c = Constants.cats[cId];
+      this.m = Constants.mfrs[this.p.mfr_id];
+    }
   }
 
   share(site : number): void {

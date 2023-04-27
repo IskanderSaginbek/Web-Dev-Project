@@ -37,6 +37,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SignupMfrComponent } from './signup-mfr/signup-mfr.component';
 import { LoginComponent } from './login/login.component';
 import { LoginMfrComponent } from './login-mfr/login-mfr.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { LoginMfrComponent } from './login-mfr/login-mfr.component';
     SignupComponent,
     SignupMfrComponent,
     LoginComponent,
-    LoginMfrComponent
+    LoginMfrComponent,
+    NotfoundComponent
   ],
     imports: [
         BrowserModule,
