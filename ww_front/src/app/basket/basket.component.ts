@@ -26,8 +26,9 @@ export class BasketComponent implements OnInit {
 
   recalc(c : cart_item) {
     let q = c.quantity;
+    console.log(q);
     if (q < 0 || !q) q = 1;
-    if (q > c.available) q=c.available;
+    else if (q > c.available) q=c.available;
     this.total = this.shipments[this.s].price;
     for (let v of this.items) {
       if (c.id === v.id) v.quantity = q;

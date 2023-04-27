@@ -45,7 +45,7 @@
           </span>
         </div>
       </div>
-      <div id="message" [ngStyle]="{'animation-play-state' : msg_vis, 'color' : msg_clr, 'animation-name' : msg_anim}" (animationend)="msg_anim='none'">
+      <div id="message" [ngStyle]="{'animation-play-state' : msg_vis, 'background-color' : msg_clr, 'animation-name' : msg_anim}" (animationend)="msg_anim='none'">
         <b>{{msg_text}}</b>
       </div>
     </div>

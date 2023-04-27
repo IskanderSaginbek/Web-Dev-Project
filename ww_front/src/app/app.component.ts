@@ -39,7 +39,6 @@ export class Constants {
     img : "",
     allow_news : true,
     pref_cat : [0,1],
-    pref_price : [100,1000],
     only_available : false,
   }
   public static cats : category[] = [ //ditto

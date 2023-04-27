@@ -194,12 +194,14 @@ a fa-icon {
   background-color: #EBECED;
   padding: .5em 0;
   border-bottom: none;
-  width: 20vw;
+  width: 30vw;
   position: fixed;
-  left : 40vw;
+  left : 35vw;
   bottom: -10vh;
   animation-name: msg_popup;
   animation-duration: 5s;
   animation-play-state: paused;
   animation-fill-mode: forwards;
+  font-size: 2rem;
+  color : #FBFCFF;
 }

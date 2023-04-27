@@ -69,7 +69,6 @@ export interface user {
   img : string;
   allow_news : boolean;
   pref_cat : number[]; //cat_id
-  pref_price : number[]; //0 - lower boundary, 1 - upper
   only_available : boolean;
 }
 export interface mfr {

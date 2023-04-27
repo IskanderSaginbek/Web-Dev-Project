@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 <main>
   <span><b>Choose shipment method:</b>
-    <select (change)="recalc_ship()" [(ngModel)]="s">
+    <select (change)="recalc_ship()" (mouseup)="recalc_ship()" [(ngModel)]="s">
       <option value="{{s.id}}" *ngFor="let s of shipments">{{s.name}}</option>
     </select></span>
   <p *ngIf="s && shipments">{{shipments[s].name}}: {{shipments[s].descr}}</p>
@@ -13,10 +13,12 @@
     <div *ngFor="let i of items" class="item-wrapper">
       <img src="{{i.thumbnail}}">
       <div class="item">
-        <h5>{{i.name}}</h5>
+        <h5><a routerLink="/products/{{i.prod_id}}">{{i.name}}</a></h5>
         <p><b>Price per piece:</b> {{i.price}}$</p>
         <p><b>Available:</b> {{i.available}}</p>
-        <p><b>Quantity:</b> <input (input)="recalc(i)" type="number" name="amount" id="quantity" min="1" max="{{i.available}}" value="1" [(ngModel)]="i.quantity"></p>
+        <p><b>Quantity:</b> <input (change)="recalc(i)" (mouseup)="recalc(i)" (mouseleave)="recalc(i)"
+                                   type="number" name="amount" id="quantity" min="1" max="{{i.available}}" value="1"
+                                   [(ngModel)]="i.quantity"></p>
         <p class="bold">Total cost: {{(i.price*i.quantity).toFixed(3)}}$</p>
       </div>
     </div>
