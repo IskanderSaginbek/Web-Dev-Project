@@ -3,7 +3,8 @@ main {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 h1 {
-  padding: .5em;
+  font-size: 2.5rem;
+  padding: 1em;
 }
 .cat_descr {
   margin-top: auto;

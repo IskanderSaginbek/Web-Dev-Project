@@ -42,7 +42,7 @@ export class ProductComponent implements OnInit {
       this.router.navigate(['/404'], {
         skipLocationChange: true,
         state: {
-          reason : "Unable to locate product"
+          reason : "Unable to locate the product"
         }
       });
     }

@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
       this.router.navigate(['/404'], {
         skipLocationChange: true,
         state: {
-          reason : "Unable to locate category"
+          reason : "Unable to locate the category"
         }
       });
     }

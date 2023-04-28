@@ -34,7 +34,7 @@ main {
 }
 
 .cat:nth-of-type(2n) {
-  background-color: #DDDDDD;
+  background-color: #F6F1F1;
 }
 
 .cat h3, h2 {
@@ -48,18 +48,49 @@ main {
   padding-bottom: 1em;
 }
 .cat {
+  text-align: center;
   padding : 1em .5em;
 }
 
+#about {
+  display: flex;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  height : 35vh;
+}
+#about img {
+  height : 100%;
+  align-self: stretch;
+  float : left;
+}
+#about .cat_sub {
+  margin-right: 10%;
+  margin-left: 5%;
+}
+#partnership {
+  display: flex;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  height : 35vh;
+}
+#partnership img {
+  height : 100%;
+  align-self: stretch;
+  float : right;
+}
+#partnership .cat_sub {
+  margin-left: 10%;
+  margin-right: 5%;
+}
+
 .cat_sub {
-  display : flex;
-  flex-direction: row;
+  align-self: center;
 }
 .cat_sub p, h2 {
   display: inline-block;
-  text-indent: 2rem;
   flex-grow: 2;
-  max-width: 70%;
   padding: 0 .5em;
 }
 .cat_sub img {
@@ -76,6 +107,11 @@ main {
 .cat_descr {
   margin-top: auto;
   margin-bottom: 2em;
+}
+
+.card h3 {
+  text-indent: 0;
+  display: inline-block;
 }
 .card img {
   border-radius: .5em;

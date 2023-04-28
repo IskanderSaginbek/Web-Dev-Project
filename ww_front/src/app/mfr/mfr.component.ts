@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Constants} from "../app.component";
 import {mfr} from "../../interfaces";
 
@@ -10,12 +10,20 @@ import {mfr} from "../../interfaces";
 })
 export class MfrComponent implements OnInit {
   public m : mfr | undefined;
-  constructor(private route : ActivatedRoute) { }
+  constructor(private route : ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const mfrId = Number(routeParams.get('mfrId'));
     this.m = Constants.mfrs[mfrId];
+    if (!this.m) {
+      this.router.navigate(['/404'], {
+        skipLocationChange: true,
+        state: {
+          reason : "Unable to locate the manufacturer"
+        }
+      });
+    }
   }
 
 }
