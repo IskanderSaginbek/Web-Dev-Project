@@ -7,7 +7,7 @@
   </div>
   <main>
     <div class="card" *ngFor="let p of prods" routerLink="/categories/{{cat.id}}/{{p.id}}">
-      <img src="{{p.image}}">
+      <div id="img_wrapper"><img src="{{p.image}}"></div>
       <div class="prod_descr">
         <img src="{{mfrs[p.mfr_id].img}}">
         <h3>{{p.name}}</h3><br>

@@ -32,7 +32,6 @@ import { MfrHistoryComponent } from './mfr-history/mfr-history.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AlterProductComponent } from './alter-product/alter-product.component';
 import { SearchComponent } from './search/search.component';
-import { NewProductsComponent } from './new-products/new-products.component';
 import { SignupComponent } from './signup/signup.component';
 import { SignupMfrComponent } from './signup-mfr/signup-mfr.component';
 import { LoginComponent } from './login/login.component';
@@ -69,7 +68,6 @@ import { NotfoundComponent } from './notfound/notfound.component';
     AddProductComponent,
     AlterProductComponent,
     SearchComponent,
-    NewProductsComponent,
     SignupComponent,
     SignupMfrComponent,
     LoginComponent,
