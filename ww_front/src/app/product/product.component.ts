@@ -83,7 +83,7 @@ export class ProductComponent implements OnInit {
       this.msg_vis="running";
       this.msg_text="Invalid amount";
       this.msg_clr="#ED1313"
-      if (q < 0) this.msg_text="Yeah, real funny";
+      if (q < 0) this.msg_text="Negative quantity";
       else if (q > p.amount) this.msg_text="Requested: "+q+", Available: "+p.amount;
       else if (!q) this.msg_text="Enter the quantity";
     }

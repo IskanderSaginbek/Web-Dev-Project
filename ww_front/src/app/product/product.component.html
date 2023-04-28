@@ -52,8 +52,8 @@
   </div>
   <div id="payment-info">
     <span><label for="quantity">Enter quantity: </label>
-    <input type="number" name="amount" id="quantity" min="1" value="1" [(ngModel)]="q"></span>
-    <button class="orange" (click)="addToCart(p,q)">Add to cart</button>
+    <input disabled="{{p.amount==0}}" type="number" name="amount" id="quantity" min="1" max="{{p.amount}}" value="1" [(ngModel)]="q"></span>
+    <button [disabled]="p.amount==0" class="orange" (click)="addToCart(p,q)">Add to cart</button>
   </div>
   <div id="comment-section">
     <h3>Leave a comment:</h3>
