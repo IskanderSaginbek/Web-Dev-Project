@@ -11,45 +11,45 @@
     <div class="cat">
       <h2>Featured manufacturers</h2>
       <div class="mfrs-prods">
-        <img src="../../assets/mfrs/bccomponents.png" routerLink="/manufacturers/0">
-        <img src="../../assets/mfrs/bourns.png" routerLink="/manufacturers/1">
-        <img src="../../assets/mfrs/yageo.png" routerLink="/manufacturers/2">
-        <img src="../../assets/mfrs/texas-instruments.png" routerLink="/manufacturers/3">
-        <img src="../../assets/mfrs/gct.png" routerLink="/manufacturers/4">
+        <img src="../../assets/mfrs/bccomponents.png" routerLink="/manufacturers/0" title="See the manufacturer's page">
+        <img src="../../assets/mfrs/bourns.png" routerLink="/manufacturers/1" title="See the manufacturer's page">
+        <img src="../../assets/mfrs/yageo.png" routerLink="/manufacturers/2" title="See the manufacturer's page">
+        <img src="../../assets/mfrs/texas-instruments.png" routerLink="/manufacturers/3" title="See the manufacturer's page">
+        <img src="../../assets/mfrs/gct.png" routerLink="/manufacturers/4" title="See the manufacturer's page">
       </div>
     </div>
     <div class="cat">
       <h2>Newest products</h2>
       <div class="mfrs-prods">
-        <div class="card" routerLink="/categories/7/30">
+        <div class="card" routerLink="/categories/7/30" title="See the product page">
           <img src="../../assets/products/MFG_USB4715-GF-A.webp">
           <div class="cat_descr">
             <h3>USB4715-GF-A</h3>
             <p>USB Connectors USBC Rec GF 6P Horizontal MidMt SMT H 4.46mm IP67, Gasket Required Separately</p>
           </div>
         </div>
-        <div class="card" routerLink="/categories/4/22">
+        <div class="card" routerLink="/categories/4/22" title="See the product page">
           <img src="../../assets/products/HTB1mmJZXInrK1RkHFrdq6xCoFXaU.jpg">
           <div class="cat_descr">
             <h3>SN74LS32DR</h3>
             <p>Logic Gates Quad 2-input Positive-OR gates</p>
           </div>
         </div>
-        <div class="card" routerLink="/categories/4/15">
+        <div class="card" routerLink="/categories/4/15" title="See the product page">
           <img src="../../assets/products/20200724_134158_976x700.webp">
           <div class="cat_descr">
             <h3>SN74HC27DR</h3>
             <p>Logic Gates Triple 3-Input Positive NOR Gates</p>
           </div>
         </div>
-        <div class="card" routerLink="/categories/4/17">
+        <div class="card" routerLink="/categories/4/17" title="See the product page">
           <img src="../../assets/products/n0020a.png">
           <div class="cat_descr">
             <h3>SN74HCS273PWR</h3>
             <p>Flip-Flops Octal D-type flip-flops with clear with Schmitt-trigger inputs</p>
           </div>
         </div>
-        <div class="card" routerLink="/categories/1//8">
+        <div class="card" routerLink="/categories/1//8" title="See the product page">
           <img src="../../assets/products/31JWTxoijwL.jpg">
           <div class="cat_descr">
             <h3>MAL217250222E3</h3>
@@ -61,7 +61,7 @@
     <div class="cat">
       <h2>Product categories</h2>
       <div id = "cat_wrapper">
-        <div class="card" *ngFor="let c of categories" routerLink="/categories/{{c.id}}">
+        <div class="card" *ngFor="let c of categories" routerLink="/categories/{{c.id}}" title="Browse the '{{c.name}}'">
           <img src="{{c.image}}">
           <div class="cat_descr">
             <h3>{{c.name}}</h3>
