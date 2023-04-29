@@ -18,7 +18,7 @@ nav a {
   color : inherit;
   padding : 0 .5em;
 }
-nav a:hover {
+nav a:hover, fa-icon:hover {
   color : #FFC700;
   text-decoration: none;
 }

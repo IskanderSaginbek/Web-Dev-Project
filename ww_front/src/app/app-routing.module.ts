@@ -46,8 +46,8 @@ const routes: Routes = [
   {path : 'profile', component: UserProfileComponent},
   {path : 'profile-mfr', component: MfrProfileComponent},
   {path : '404', component: NotfoundComponent},
-  {path : '**', component: NotfoundComponent},
   {path : '', redirectTo: 'home', pathMatch : "full"},
+  {path : '**', component: NotfoundComponent},
 ];
 
 @NgModule({
