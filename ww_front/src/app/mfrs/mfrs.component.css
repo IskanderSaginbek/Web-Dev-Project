@@ -9,5 +9,11 @@ h1 {
   padding: 1em;
 }
 img {
+  padding: 2em;
   cursor: pointer;
+  transition: 400ms;
+}
+img:hover {
+  background-color: #AEAEAE;
+  transition: 400ms;
 }
