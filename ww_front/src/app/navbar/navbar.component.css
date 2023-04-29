@@ -38,3 +38,23 @@ nav a:hover, fa-icon:hover {
 #nav-login-mfr {
   display: none;
 }
+
+@media screen and (max-width: 768px) {
+  nav {
+    padding: 0;
+    flex-direction: column;
+    font-size: 2.5rem;
+    align-items: center;
+  }
+  #nav-r {
+    flex-direction: column;
+    align-items: center;
+  }
+  #nav-l {
+    flex-direction: column;
+    align-items: center;
+  }
+  a, #nav-cart {
+    margin : .5em 0;
+  }
+}

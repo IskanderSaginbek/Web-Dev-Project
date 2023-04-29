@@ -64,3 +64,30 @@ header {
 .order:checked + button {
   background-color : #00D415 !important;
 }
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+  }
+  #search {
+    flex-direction: column;
+    font-size: 1.5rem;
+  }
+  #search > * {
+    margin: .5em 0;
+  }
+  #logo img {
+    width: 6em;
+  }
+  #logo h5 {
+    font-size: 3em;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  header {
+    flex-direction: column;
+  }
+  header > * + * {
+    margin : 1em;
+  }
+}

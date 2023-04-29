@@ -43,3 +43,14 @@ h3 {
   height: 0;
   padding-bottom: 100%;
 }
+@media screen and (max-width: 768px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

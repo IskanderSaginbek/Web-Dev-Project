@@ -58,3 +58,24 @@ footer {
 #copy p {
   padding: 1em;
 }
+
+@media screen and (max-width: 768px) {
+  #cats {
+    display: flex;
+    flex-direction: column;
+    margin : 0;
+    align-items: center;
+  }
+  .cat {
+    align-items: center;
+  }
+  .cat h4 {
+    font-size: 1.5rem;
+  }
+  .cat a {
+    font-size: 1.25rem;
+  }
+  #logos fa-icon {
+    font-size : 2rem;
+  }
+}

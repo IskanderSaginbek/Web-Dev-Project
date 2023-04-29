@@ -17,3 +17,9 @@ img:hover {
   background-color: #AEAEAE;
   transition: 400ms;
 }
+@media screen and (max-width: 1200px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+}
