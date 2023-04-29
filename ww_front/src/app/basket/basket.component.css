@@ -9,11 +9,18 @@
   width: 6em;
   height: 6em;
   float : left;
-  margin : 0 .5em
+  margin : 0 1em;
 }
 .item {
   display: inline-block;
   margin-right: .5em;
+}
+.item-wrapper fa-icon {
+  /*display: block;
+  text-align: right; old styling*/
+  clear: both;
+  display: block;
+  cursor : pointer;
 }
 main {
   padding: 2rem;
@@ -24,7 +31,7 @@ main {
   display: block;
   margin: auto;
 }
-#checkout {
+button {
   margin-top: .5em;
   display : block;
   border-radius: .3em;

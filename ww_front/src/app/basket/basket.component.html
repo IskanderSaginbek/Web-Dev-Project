@@ -10,7 +10,9 @@
   <p *ngIf="s && shipments">Delivery in {{shipments[s].days}} days</p>
   <b *ngIf="items.length==0" id="empty">Your cart is empty</b>
   <div *ngIf="items.length>0">
+    <button (click)="clearCart()" id="clear">Clear cart</button>
     <div *ngFor="let i of items" class="item-wrapper">
+      <fa-icon [icon]="faX" (click)="removeItem(i)"></fa-icon>
       <img src="{{i.thumbnail}}">
       <div class="item">
         <h5><a routerLink="/categories/{{i.cat_id}}/{{i.prod_id}}">{{i.name}}</a></h5>

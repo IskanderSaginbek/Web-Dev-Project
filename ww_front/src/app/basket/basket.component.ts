@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {cart_item, product, shipment} from "../../interfaces";
 import {Constants} from "../app.component";
 import {CartService} from "../services/cart.service";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-basket',
@@ -13,6 +14,7 @@ export class BasketComponent implements OnInit {
   shipments : shipment[] = Constants.shipments;
   items : cart_item[] = [];
   total : number = 0;
+  faX = faTimes;
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
@@ -22,6 +24,16 @@ export class BasketComponent implements OnInit {
       this.total += v.price*v.quantity;
     }
     this.total += this.shipments[this.s].price;
+  }
+
+  clearCart() : void {
+    this.cartService.clearCart(); //redundant tho
+    window.location.reload();
+  }
+
+  removeItem(i : cart_item) : void {
+    this.cartService.removeFromCart(i.id);
+    this.recalc(i);
   }
 
   recalc(c : cart_item) {
