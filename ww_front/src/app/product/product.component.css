@@ -134,22 +134,27 @@ a fa-icon {
   font-size: 1.5em;
 }
 
+@keyframes share_popup_anim {
+  0% {background-color: rgba(0,0,0,0); top: 0vh;}
+  100% {background-color: rgba(0,0,0,.5); top: -25vh;}
+}
+@keyframes share_menu_anim {
+  0% {opacity: 0.0}
+  100% {opacity: 1.0}
+}
 #share-popup {
   width: 100vw;
-  height: 100vh;
+  height: 150vh;
   position: fixed;
   left: 0;
-  top: 0;
+  top: -25vh;
   padding: 0;
   margin: 0;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0,0,0,.5);
   justify-content: center;
   align-items: center;
-  transition: 400ms;
-}
-#share-popup:hover {
-  background-color: rgba(0,0,0,.5);
-  transition: 400ms;
+  animation-duration: 800ms;
+  animation-fill-mode: forwards;
 }
 #share-menu {
   width : 8em;
@@ -161,6 +166,8 @@ a fa-icon {
   border-radius: .2em;
   font-size: 2em;
   padding: .5em;
+  animation-duration: 800ms;
+  animation-fill-mode: forwards;
 }
 #share-menu span {
   display: flex;

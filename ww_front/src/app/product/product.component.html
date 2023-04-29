@@ -33,8 +33,8 @@
       <p><b>Available:</b> {{p.amount}}</p>
       <p><b>Date published:</b> {{p.date}}</p>
       <button id="share" (click)="toggle_share()">Share <fa-icon [icon]="faShare"></fa-icon></button>
-      <div id="share-popup" [ngStyle]="{'display':share_vis}">
-        <div id="share-menu">
+      <div id="share-popup" [ngStyle]="{'display' : share_vis,'animation-play-state' : share_state, 'animation-name' : share_anim}" (animationend)="share_anim='none'">
+        <div id="share-menu" [ngStyle]="{'animation-play-state' : share_state, 'animation-name' : share_m_anim}" (animationend)="share_m_anim='none'">
           <fa-icon [icon]="faX" id="X" (click)="toggle_share()"></fa-icon>
           <h3>Share via:</h3>
           <span>

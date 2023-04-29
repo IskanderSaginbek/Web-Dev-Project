@@ -25,7 +25,10 @@ export class ProductComponent implements OnInit {
   faWA = faWhatsapp;
   faChain = faLink;
   faX = faTimes;
+  share_state = "paused";
   share_vis : string = "none";
+  share_anim : string = "share_popup_anim";
+  share_m_anim : string = "share_menu_anim";
   msg_vis : string = "paused";
   msg_clr : string = "green";
   msg_text : string = "Product added to cart";
@@ -74,8 +77,18 @@ export class ProductComponent implements OnInit {
     }
   }
   toggle_share() : void {
-    if (this.share_vis=="none") this.share_vis = "flex";
-    else this.share_vis = "none";
+    if (this.share_vis=="none") {
+      this.share_vis = "flex";
+      this.share_anim = "share_popup_anim";
+      this.share_m_anim = "share_menu_anim";
+      this.share_state = "running";
+    }
+    else {
+      this.share_vis = "none";
+      this.share_anim = "none";
+      this.share_m_anim = "none";
+      this.share_state = "paused";
+    }
   }
   addToCart(p : product,q : number) {
     if (q < 0 || q > p.amount || !q) {
