@@ -12,16 +12,24 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
     path("user/login/", views.MyTokenObtainPairView.as_view()),
-    # path("user/logout/", views.logoutUser),
     path("user/register/", views.RegisterUser.as_view()),
-    # path("user/update/", views.updateUser),
-    path("user/get/", views.getUser),
 
-    path("products/categories/<int:category_id>/", views.getProductsByCategoryID),
-    path("products/<int:product_id>/", views.getProductByID),
+    path("products/categories/<int:category_id>/", views.ManageProductsByCategoryID.as_view()),
+    path("products/<int:product_id>/", views.manageProductByID),
+    path("products/chosen/", views.getChosenProducts),
+    path("products/existant/", views.getExistantProducts),
 
     path("categories/", views.getCategories),
     path("categories/<int:category_id>/", views.getCategoryByID),
 
-    # path("comments/", views.getComments),
+    path("comments/<int:user_id>/", views.getComments),
+    path("comments/<int:user_id>/<int:comment_id>/", views.manageComment),
+
+    path("rate/<int:prod_id>/", views.rateProduct),
+
+    path("history/", views.getHistory),
+    path("purchase/", views.purchaseProducts),
+
+    path("shippings/", views.getShippings),
+    path("shippings/<int:ship_id>/", views.getShipping),
 ]

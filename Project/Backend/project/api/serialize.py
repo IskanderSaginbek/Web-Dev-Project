@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        password = validated_data.pop("password1", None)
+        password = validated_data.pop("pass", None)
         instance = self.Meta.model(**validated_data)
         if(password is not None):
             instance.set_password(password) # django built-in
@@ -46,12 +46,13 @@ class ManufacturerSerializer(serializers.ModelSerializer):
     
 
 class ProductSerializer(serializers.ModelSerializer):
-    #id = serializers.HiddenField(default=serializers.IntegerField)
-
     class Meta:
         model = models.Product
         fields = ("id", "name", "descr", "descr_short", "sub_cat", "image", "datasheet",
                 "price", "amount", "ratings_num", "date", "rating", "cat_id", "mfr_id")
+        extra_kwargs = {
+            "id": {"read_only": True}
+        }
     
     def create(self, validated_data):
         product = models.Product.objects.create(**validated_data)
@@ -95,24 +96,26 @@ class CategorySerializer(serializers.Serializer):
 
 
 
-class CartItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.CartItem
-        fields = ["id", "prod_id", "ship_id", "quantity", "price"]
-
-
-
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Comment
-        fields = ["id", "prod_id", "text", "data", "likes", "dislikes"]
+        fields = ["id", "user_id", "prod_id", "text", "data"]
+
+    def create(self, validated_data):
+        comment = models.Comment.objects.create(**validated_data)
+        return comment
+    
+    def update(self, instance, validated_data):
+        instance.text = validated_data.get("text", instance.text)
+        instance.save()
+        return instance
 
 
 
 class HistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.History
-        fields = ["id", "prod_id", "ship_id", "quantity", "cost", "date", "status"]
+        fields = ["id", "user_id", "prod_id", "ship_id", "quantity", "price", "date", "status"]
 
 
 

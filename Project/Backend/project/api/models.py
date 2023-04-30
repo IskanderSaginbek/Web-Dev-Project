@@ -77,6 +77,16 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
+    def purchaseProduct(self, item, user, ship_id):
+        if(self.amount - item["amount"] < 0):
+            return False
+        self.amount -= item["amount"]
+        self.save()
+
+        shipping = Shipping.objects.get(id = ship_id)
+        History.objects.create(prod_id = self, user_id = user, ship_id = shipping, quantity = item["amount"], price=self.price, status=1) # what is status?
+        return True
+    
     
 
 class Category(models.Model):
@@ -97,7 +107,7 @@ class Comment(models.Model):
     user_id = models.ForeignKey(CustomerUser, on_delete=models.CASCADE, related_name="comments")
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="products_comments")
     text = models.TextField()
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return "Comment #" + str(id)
@@ -110,11 +120,14 @@ class History(models.Model):
     ship_id = models.ForeignKey("Shipping", on_delete=models.CASCADE, related_name="shipping_history")
     quantity = models.IntegerField()
     price = models.FloatField()
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(blank=True, auto_now_add=True)
     status = models.IntegerField()
 
     class Meta:
         verbose_name_plural = "Histories"
+
+    def __str__(self):
+        return f'Purchase #{self.id}'
 
 
 
@@ -124,10 +137,5 @@ class Shipping(models.Model):
     price = models.FloatField()
     days = models.IntegerField()
 
-
-
-class CartItem(models.Model):
-    prod_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="picked")
-    ship_id = models.ForeignKey(Shipping, on_delete=models.CASCADE, related_name="used_shipping")
-    quantity = models.IntegerField()
-    price = models.FloatField()
+    def __str__(self):
+        return self.name
