@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from . import managers
+
 
 class User(AbstractUser):
     password = models.CharField(max_length=30)
@@ -10,8 +12,10 @@ class User(AbstractUser):
     first_name = None
     last_name = None
 
+    objects = managers.UserManager()
+
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username", "password"]
+    REQUIRED_FIELDS = ["username", "password", "is_customer"]
 
 
 

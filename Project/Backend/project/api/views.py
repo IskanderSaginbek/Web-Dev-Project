@@ -1,8 +1,7 @@
-import json
+import json, datetime, jwt
 
-from django.core import serializers
-from rest_framework.pagination import PageNumberPagination
-from django.http.response import JsonResponse, HttpResponse
+from django.contrib.auth.base_user import BaseUserManager
+from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import status, generics
@@ -10,64 +9,61 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-
+from rest_framework.pagination import PageNumberPagination
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+
+from djoser.views import UserViewSet as DjoserUserViewSet
 
 from . import models
 from . import serialize
 from . import methods
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer): # gives back serialized jwt token (suppose so); unfinished
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        token['username'] = user.username
-        token['email'] = user.email
-
-        return token
-    
-class MyTokenObtainPairView(TokenObtainPairView): 
-    serializer_class = MyTokenObtainPairSerializer
 
 
-
-class RegisterUser(APIView):
+class LoginUser(APIView):
     def post(self, request):
-        if(request.data["pass"] != request.data["confirm"]):
-            return Response({"error": "Passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
+        email = request.data["email"]
+        password = request.data["password"]
+
+        user = models.User.objects.filter(email=email).first()
+
+        if(user is None):
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         
-        if(not request.data["is_customer"]):
-            request.data["username"] = request.data.pop("name") # to have username instead of name, so the table User will have valid data
-
-        serialized = serialize.UserSerializer(data=request.data)
-        if(serialized.is_valid()):
-            serialized.save()
-            user = models.User.objects.get(id = serialized.data["id"])
-            if(request.data["is_customer"] == True):
-                customer = models.CustomerUser.objects.create(username = request.data["username"],
-                        email = request.data["email"], password = request.data["pass"], userid = user)
-            else:
-                manufacturer = models.ManufacturerUser.objects.create(name = request.data["username"],
-                        email = request.data["email"], password = request.data["pass"], userid = user)
-                
-            return Response(serialized.data)
+        if(not user.check_password(password)):
+            return Response({"error": "Incorrect password"}, status=status.HTTP_400_BAD_REQUEST)
         
-        return Response(serialized.errors, status = status.HTTP_400_BAD_REQUEST)
+        payload = {
+            "user_id": user.id,
+            "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=5),
+            "iat": datetime.datetime.utcnow(),
+            "email": email,
+            "is_customer": user.is_customer,
+        }
 
+        token = jwt.encode(payload, "secret", algorithm="HS256")
 
+        return Response({"jwt": token})
+    
 
-@permission_classes([IsAuthenticatedOrReadOnly])
+class LogoutUser(APIView):
+    def post(self, request):
+        response = Response()
+        response.delete_cookie('jwt')
+        response.data = {"message": "success"}
+        return response
+
 class ManageProductsByCategoryID(generics.GenericAPIView):
     queryset = models.Product.objects.all()
     serializer_class = serialize.ProductSerializer
-    
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
     def get(self, request, category_id):
         if(request.method == "GET"):
             queryset= methods.getFilteredProducts(request.data, category_id)
             paginator = PageNumberPagination()
-            paginator.page_size = 3
+            paginator.page_size = 10
             p = paginator.paginate_queryset(queryset=queryset, request=request)
             serialized = serialize.ProductSerializer(p, many=True)
             data = serialized.data
@@ -83,6 +79,7 @@ class ManageProductsByCategoryID(generics.GenericAPIView):
                 serialized.save()
                 return Response(serialized.data)
             return Response(serialized.errors, status = status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(["GET"])
 @csrf_exempt
@@ -137,6 +134,7 @@ def getCategories(request):
         serialized = serialize.CategorySerializer(categories, many=True)
         return Response(serialized.data)
     
+
 @api_view(["GET"])
 @csrf_exempt
 def getCategoryByID(request, category_id):
@@ -159,6 +157,7 @@ def getHistory(request): # request.user.id == user_id ?
         userHistory = models.History.objects.filter(user_id = request.user.id)
         serialized = serialize.HistorySerializer(userHistory, many=True)
         return Response(serialized.data)
+
 
 @api_view(["PATCH"])
 @permission_classes([IsAuthenticated])
@@ -200,6 +199,7 @@ def getShippings(request):
         serialized = serialize.ShippingSerializer(shippings, many=True)
         return Response(serialized.data)
     
+
 @api_view(["GET"])
 @csrf_exempt
 def getShipping(request, ship_id):
@@ -212,6 +212,8 @@ def getShipping(request, ship_id):
         serialized = serialize.ShippingSerializer(shipping)
         return Response(serialized.data)
     
+
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticatedOrReadOnly])
 @csrf_exempt
@@ -286,6 +288,8 @@ def rateProduct(request, prod_id):
 
     serialized = serialize.ProductSerializer(product)
     return Response(serialized.data)
+
+
 
 @api_view(["GET"])
 @csrf_exempt

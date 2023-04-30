@@ -1,18 +1,30 @@
-from django.urls import path
+from django.urls import path, include, re_path
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from rest_framework.routers import DefaultRouter
 
 from . import views
 
-urlpatterns = [
-    path("token/", views.MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
-    path("user/login/", views.MyTokenObtainPairView.as_view()),
-    path("user/register/", views.RegisterUser.as_view()),
+
+urlpatterns = [
+
+    # DJOSER & JWT AUTH
+
+    # REGISTRATION:
+    # http://127.0.0.1:8000/api/auth/users/       Send here POST with email, username, password, is_customer; otherwise not valid
+
+    # LOGIN:
+    # http://127.0.0.1:8000/api/auth/jwt/create/     Send here POST with email and password; JWT token is returned in exchange
+
+    # REFRESH:
+    # http://127.0.0.1:8000/api/auth/jwt/refresh/  Send here POST with email and password; token is destroyed in exchange
+
+    # IN ORDER TO ACCESS PROTECTED VIEWS (THOSE WHICH REQUIRE AUTHORIZED USER), PUT JWTTOKEN IN HEADERS
+    
+    
+    path("auth/", include("djoser.urls")), # base, controls users in django
+    path("auth/", include("djoser.urls.jwt")), # controls jwt tokens
+
 
     path("products/categories/<int:category_id>/", views.ManageProductsByCategoryID.as_view()),
     path("products/<int:product_id>/", views.manageProductByID),
