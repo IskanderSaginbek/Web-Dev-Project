@@ -3,9 +3,25 @@ nav {
   flex-direction: row;
   background-color: #0079E8;
   justify-content: space-between;
+  align-items: center;
   color : #FBFCFF;
   padding: 1em 10em;
   margin : 0 !important;
+}
+
+#nav-profile {
+  display: flex;
+  flex-direction: row;
+  align-items : center;
+  cursor: pointer;
+  margin : 0 .5em;
+}
+#nav-profile fa-icon {
+  font-size : 1.5rem;
+  margin-right: .25em;
+}
+#nav-profile:hover {
+  color : #FFC700;
 }
 
 #nav-l {
@@ -27,6 +43,7 @@ nav a:hover, fa-icon:hover {
   display : flex;
   flex-direction: row;
   color : inherit;
+  align-items: center;
 }
 #nav-cart {
   display: flex;

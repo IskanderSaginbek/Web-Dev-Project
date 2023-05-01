@@ -69,7 +69,7 @@ export interface user {
   address : string;
   img : string;
   allow_news : boolean;
-  pref_cat : number[]; //cat_id
+  pref_cat? : number; //cat_id
   only_available : boolean;
 }
 export interface mfr {

@@ -23,22 +23,23 @@ export class AppComponent implements OnInit{
 }
 
 export class Constants {
-  private static d = new Date("2023-01-01");
-  public static u : user = { //later will be replaced with actual user data
+  public static u = JSON.parse(localStorage.getItem("cur_usr")!) || {
     id : 0,
-    email : "example@user.com",
-    username : "string",
-    password : "string",
-    fname : "string",
-    lname : "string",
-    phone : "string",
-    card_num : "string",
-    exp_date : this.d,
-    ver_num : "string",
-    address : "string",
+    type : 0,
+    email : "",
+    username : "",
+    password : "",
+    fname : "",
+    lname : "",
+    phone : "",
+    card_num : "",
+    exp_date : new Date("2024-01-01"),
+    ver_num : "",
+    address : "",
     img : "",
-    allow_news : true,
-    pref_cat : [0,1],
+    descr : "",
+    name : "",
+    allow_news : false,
     only_available : false,
   }
   public static cats : category[] = [ //ditto

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {faShoppingCart, faUserCircle} from "@fortawesome/free-solid-svg-icons";
+import {Constants} from "../app.component";
+import {user} from "../../interfaces";
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +10,8 @@ import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 })
 export class NavbarComponent implements OnInit {
   faCart = faShoppingCart;
+  faUser = faUserCircle;
+  u = Constants.u;
   constructor() { }
 
   ngOnInit(): void {
