@@ -10,8 +10,8 @@
   <input type="password" maxlength="255" name="pass" id="pass" formControlName="password" formControlName="password" required>
   <label for="confirm">Confirm password:</label>
   <input type="password" maxlength="255" name="confirm" id="confirm" formControlName="confirm" required>
-  <span style="color: red" *ngIf="signupForm.hasError('passwordsNotMatching')">Passwords don't match</span>
-  <span><input type="checkbox" name="keep_logged">Keep me logged in</span>
+  <span style="color: red" *ngIf="signupForm.hasError('invalid')">Passwords don't match</span>
+  <!--<span><input type="checkbox" name="keep_logged">Keep me logged in</span>-->
   <span><a routerLink="/signup-mfr">Sign up as manufacturer</a></span>
   <button type="submit">Create account</button>
 </form>

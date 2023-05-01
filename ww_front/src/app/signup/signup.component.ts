@@ -46,8 +46,8 @@ export class SignupComponent implements OnInit {
     let new_id : number;
     //console.log(usr);
     this.authService.register(usr).pipe(
-      map(usr => {this.router.navigate(['home']); localStorage.setItem("cur_usr",JSON.stringify({
-        id : new_id,
+      map(usr => {localStorage.setItem("cur_usr",JSON.stringify({
+        id : usr.id,
         type : 1,
         email : this.signupForm!.value.email,
         username : this.signupForm!.value.username,
@@ -64,10 +64,10 @@ export class SignupComponent implements OnInit {
         name : this.signupForm!.value.username,
         allow_news : false,
         only_available : false,
-      }));})
-    ).subscribe(data => {
+      }));window.location.assign("http://localhost:4200/home");})
+    ).subscribe(/*data => {
       console.log(data);
-    });
+    }*/);
 
   }
 

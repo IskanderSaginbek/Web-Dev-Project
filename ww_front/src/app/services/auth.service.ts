@@ -22,30 +22,27 @@ export class AuthService {
         'Content-Type': 'application/json',
         'X-CSRFToken': this.csrfToken||""
       }
-    )
+    ),
+    //withCredentials : true
   };
 
   constructor(private http : HttpClient, private jwtHelper : JwtHelperService, private cookieService : CookieService) { }
 
-  login(key : string, password : string) {
-    const validateEmail = (email : string) => {
-      return String(email)
-        .toLowerCase()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
+  login(email : string, password : string) {
+    let usr = {
+      email : email,
+      password : password
     }
-
-    if (validateEmail(key)) { //email
-
-    }
-    else { //username
-
-    }
+    return this.http.post<any>(this.url+'/api/auth/jwt/create/', JSON.stringify(usr), this.httpOptions);
+  }
+  getUser(obj : any) {
+    console.log(JSON.stringify(obj));
+    return this.http.get(this.url+"/api/user/"+obj);
   }
 
   logout() {
     localStorage.removeItem(JWT_NAME);
+    localStorage.removeItem("cur_usr");
   }
 
   register(user : any) {

@@ -1,12 +1,12 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
-<form>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <h1>Log in</h1>
-  <label for="email_username">Email or Username:</label>
-  <input type="email_username" placeholder="example@example.com" maxlength="255" name="email_username" id="email_username">
+  <label for="email">Email:</label>
+  <input type="email" placeholder="example@example.com" maxlength="255" name="email" id="email" formControlName="email">
   <label for="pass">Password:</label>
-  <input type="password" maxlength="255" name="pass" id="pass">
-  <span><input type="checkbox" name="keep_logged">Keep me logged in</span>
+  <input type="password" maxlength="255" name="pass" id="pass" formControlName="password">
+  <!--<span><input type="checkbox" name="keep_logged">Keep me logged in</span>-->
   <span><a routerLink="/signup">Don't have an account? Sign up</a></span>
   <span><a routerLink="/login-mfr">Log in as manufacturer</a></span>
   <button>Log in</button>
