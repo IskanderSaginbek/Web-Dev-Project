@@ -19,6 +19,9 @@ urlpatterns = [
     # REFRESH:
     # http://127.0.0.1:8000/api/auth/jwt/refresh/  Send here POST with email and password; token is destroyed in exchange
 
+    # CHANGE PASSWORD:
+    #http://127.0.0.1:8000/api/auth/users/set_password/ Send here POST with "new_password" and "current_password", with auth token; it changes current user
+
     # IN ORDER TO ACCESS PROTECTED VIEWS (THOSE WHICH REQUIRE AUTHORIZED USER), PUT BEARER JWTTOKEN IN HEADERS
     
     
