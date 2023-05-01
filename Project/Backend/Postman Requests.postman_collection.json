@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"customer@email.com\",\r\n    \"password\": \"secretword1\"\r\n}",
+					"raw": "{\r\n    \"email\": \"apple@gmail.com\",\r\n    \"password\": \"secretword1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -848,6 +848,116 @@
 						"api",
 						"products",
 						"chosen",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register (POST)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"apple@gmail.com\",\r\n    \"username\": \"apple\",\r\n    \"password\": \"secretword\",\r\n    \"is_customer\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/auth/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh (POST)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MDcyODU4MywiaWF0IjoxNjgyOTUyNTgzLCJqdGkiOiI5ZjE4ZTRkNmQyZGU0MzQ4OTc3YzU0NzJkODgxNWI2OSIsInVzZXJfaWQiOjIxfQ._IUNq_ucODgtWwpZxam2-yupHznpYSCG4my_uX4qIcs\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/auth/jwt/refresh/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"jwt",
+						"refresh",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change_password (POST with auth)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyOTU2MzEwLCJpYXQiOjE2ODI5NTI3MTAsImp0aSI6IjJjOWQzMDUyYjFiNDQ1NjRiMGM4NWRlNjllMWVhZWE1IiwidXNlcl9pZCI6MjR9.PPIZR0RjZyAIJ06RUj3oH0Q6k_cRea9Zgut5lcaE7_I",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"current_password\": \"secretword\",\r\n    \"new_password\": \"secretword1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/auth/users/set_password/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"users",
+						"set_password",
 						""
 					]
 				}
