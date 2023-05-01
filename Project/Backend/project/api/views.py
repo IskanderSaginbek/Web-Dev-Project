@@ -1,58 +1,72 @@
-import json, datetime, jwt
+import json
 
-from django.contrib.auth.base_user import BaseUserManager
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import status, generics
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, IsAdminUser
 from rest_framework.pagination import PageNumberPagination
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-
-from djoser.views import UserViewSet as DjoserUserViewSet
 
 from . import models
 from . import serialize
 from . import methods
 
+@api_view(["GET"])
+@permission_classes([IsAdminUser])
+def getAllUsers(request):
+    users = models.User.objects.all()
+    serialized = serialize.UserSerializer(users, many=True)
+    return Response(serialized.data)
+
+@api_view(["GET"])
+def getManufacturers(request):
+    mfrs = models.ManufacturerUser.objects.all()
+    serialized = serialize.ManufacturerSerializer(mfrs, many=True)
+    return Response(serialized.data)
 
 
-class LoginUser(APIView):
-    def post(self, request):
-        email = request.data["email"]
-        password = request.data["password"]
 
-        user = models.User.objects.filter(email=email).first()
+@api_view(["GET", "PATCH"])
+@permission_classes([IsAuthenticatedOrReadOnly])
+@csrf_exempt
+def manageProfile(request): # desired User's user_id is required, this is 
+    data = json.loads(request.body)
+    user_id = data["user_id"]
+    loggedUser = request.user
+    desiredUser = models.User.objects.get(id = user_id)
 
-        if(user is None):
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+    if(request.method == "GET"):
+        if(desiredUser.is_customer):
+            child = desiredUser.customer
+            serialized = serialize.CustomerSerializer(child)
+        else:
+            child = desiredUser.manufacturer
+            serialized = serialize.ManufacturerSerializer(child)
         
-        if(not user.check_password(password)):
-            return Response({"error": "Incorrect password"}, status=status.HTTP_400_BAD_REQUEST)
-        
-        payload = {
-            "user_id": user.id,
-            "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=5),
-            "iat": datetime.datetime.utcnow(),
-            "email": email,
-            "is_customer": user.is_customer,
-        }
-
-        token = jwt.encode(payload, "secret", algorithm="HS256")
-
-        return Response({"jwt": token})
+        return Response(serialized.data)
     
+    elif(request.method == "PATCH"):
+        if(user_id == loggedUser.id):
+            if(loggedUser.is_customer):
+                serialized = serialize.CustomerSerializer(instance=loggedUser.customer, data=request.data, partial=True)
+                if(serialized.is_valid()):
+                    serialized.save()
+                    return Response(serialized.data)
+                return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            else:
+                serialized = serialize.ManufacturerSerializer(instance=loggedUser.manufacturer, data=request.data, partial=True)
+                if(serialized.is_valid()):
+                    serialized.save()
+                    return Response(serialized.data)
+                return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        else:
+            return Response({"error": "You don't have rights"}, status=status.HTTP_403_FORBIDDEN)
 
-class LogoutUser(APIView):
-    def post(self, request):
-        response = Response()
-        response.delete_cookie('jwt')
-        response.data = {"message": "success"}
-        return response
+
 
 class ManageProductsByCategoryID(generics.GenericAPIView):
     queryset = models.Product.objects.all()
@@ -69,7 +83,7 @@ class ManageProductsByCategoryID(generics.GenericAPIView):
             data = serialized.data
             return paginator.get_paginated_response(data)
         
-    def post(self, request, category_id):
+    def post(self, request):
         if(request.method == "POST"):
             if(request.user.is_customer):
                 return JsonResponse({"error": "You don't have rights"})
@@ -79,6 +93,16 @@ class ManageProductsByCategoryID(generics.GenericAPIView):
                 serialized.save()
                 return Response(serialized.data)
             return Response(serialized.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+@csrf_exempt
+def searchProducts(request):
+    data = json.loads(request.body)
+    searchWord = data["search"]
+    products = models.Product.objects.filter(name__icontains = searchWord)
+    serialized = serialize.ProductSerializer(products, many=True)
+    return Response(serialized.data)
 
 
 @api_view(["GET"])

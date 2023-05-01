@@ -32,6 +32,21 @@ class CustomerSerializer(serializers.ModelSerializer):
             "id": {"read_only": True}
         }
 
+        def update(self, instance, validated_data):
+            instance.fname = validated_data.get("fname", instance.fname)
+            instance.lname = validated_data.get("lname", instance.lname)
+            instance.phone = validated_data.get("phone", instance.phone)
+            instance.card_num = validated_data.get("card_num", instance.card_num)
+            instance.exp_date = validated_data.get("exp_date", instance.exp_date)
+            instance.ver_num = validated_data.get("ver_num", instance.ver_num)
+            instance.address = validated_data.get("address", instance.address)
+            instance.img = validated_data.get("img", instance.img)
+            instance.allow_news = validated_data.get("allow_news", instance.allow_news)
+            instance.pref_cat = validated_data.get("pref_cat", instance.pref_cat)
+            instance.only_available = validated_data.get("only_available", instance.only_available)
+            instance.save()
+            return instance
+
 
 
 class ManufacturerSerializer(serializers.ModelSerializer):
@@ -42,6 +57,19 @@ class ManufacturerSerializer(serializers.ModelSerializer):
             "password": {"write_only": True},
             "id": {"read_only": True}
         }
+
+        def update(self, instance, validated_data):
+            instance.name = validated_data.get("name", instance.name)
+            instance.descr = validated_data.get("descr", instance.descr)
+            instance.phone = validated_data.get("phone", instance.phone)
+            instance.card_num = validated_data.get("card_num", instance.card_num)
+            instance.exp_date = validated_data.get("exp_date", instance.exp_date)
+            instance.ver_num = validated_data.get("ver_num", instance.ver_num)
+            instance.address = validated_data.get("address", instance.address)
+            instance.img = validated_data.get("img", instance.img)
+            instance.allow_news = validated_data.get("allow_news", instance.allow_news)
+            instance.save()
+            return instance
 
     
 

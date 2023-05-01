@@ -19,13 +19,17 @@ urlpatterns = [
     # REFRESH:
     # http://127.0.0.1:8000/api/auth/jwt/refresh/  Send here POST with email and password; token is destroyed in exchange
 
-    # IN ORDER TO ACCESS PROTECTED VIEWS (THOSE WHICH REQUIRE AUTHORIZED USER), PUT JWTTOKEN IN HEADERS
+    # IN ORDER TO ACCESS PROTECTED VIEWS (THOSE WHICH REQUIRE AUTHORIZED USER), PUT BEARER JWTTOKEN IN HEADERS
     
     
     path("auth/", include("djoser.urls")), # base, controls users in django
     path("auth/", include("djoser.urls.jwt")), # controls jwt tokens
 
+    path("users/", views.getAllUsers),
+    path("user/", views.manageProfile),
+    path("mfrs/", views.getManufacturers),
 
+    path("products/search/", views.searchProducts),
     path("products/categories/<int:category_id>/", views.ManageProductsByCategoryID.as_view()),
     path("products/<int:product_id>/", views.manageProductByID),
     path("products/chosen/", views.getChosenProducts),
