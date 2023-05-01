@@ -31,6 +31,7 @@ urlpatterns = [
     path("users/", views.getAllUsers),
     path("user/", views.manageProfile),
     path("mfrs/", views.getManufacturers),
+    path("customers/", views.getCustomers),
 
     path("products/search/", views.searchProducts),
     path("products/categories/<int:category_id>/", views.ManageProductsByCategoryID.as_view()),
@@ -42,7 +43,7 @@ urlpatterns = [
     path("categories/<int:category_id>/", views.getCategoryByID),
 
     path("comments/<int:user_id>/", views.getComments),
-    path("comments/<int:user_id>/<int:comment_id>/", views.manageComment),
+    path("comments/manage/<int:comment_id>/", views.manageComment),
 
     path("rate/<int:prod_id>/", views.rateProduct),
 

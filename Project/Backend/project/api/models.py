@@ -108,13 +108,13 @@ class Category(models.Model):
 
 
 class Comment(models.Model):
-    user_id = models.ForeignKey(CustomerUser, on_delete=models.CASCADE, related_name="comments")
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="products_comments")
     text = models.TextField()
     date = models.DateField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return "Comment #" + str(id)
+        return "Comment #" + str(self.id)
 
 
 

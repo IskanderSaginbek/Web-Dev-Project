@@ -52,7 +52,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 class ManufacturerSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ManufacturerUser
-        fields = "__all__"
+        exclude = ['userid']
         extra_kwargs = {
             "password": {"write_only": True},
             "id": {"read_only": True}
@@ -127,7 +127,7 @@ class CategorySerializer(serializers.Serializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Comment
-        fields = ["id", "user_id", "prod_id", "text", "data"]
+        fields = ["id", "user_id", "prod_id", "text", "date"]
 
     def create(self, validated_data):
         comment = models.Comment.objects.create(**validated_data)

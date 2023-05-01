@@ -13,17 +13,27 @@ from . import models
 from . import serialize
 from . import methods
 
+
 @api_view(["GET"])
 @permission_classes([IsAdminUser])
+@csrf_exempt
 def getAllUsers(request):
     users = models.User.objects.all()
     serialized = serialize.UserSerializer(users, many=True)
     return Response(serialized.data)
 
 @api_view(["GET"])
+@csrf_exempt
 def getManufacturers(request):
     mfrs = models.ManufacturerUser.objects.all()
     serialized = serialize.ManufacturerSerializer(mfrs, many=True)
+    return Response(serialized.data)
+
+@api_view(["GET"])
+@csrf_exempt
+def getCustomers(request):
+    customers = models.CustomerUser.objects.all()
+    serialized = serialize.CustomerSerializer(customers, many=True)
     return Response(serialized.data)
 
 
@@ -83,7 +93,7 @@ class ManageProductsByCategoryID(generics.GenericAPIView):
             data = serialized.data
             return paginator.get_paginated_response(data)
         
-    def post(self, request):
+    def post(self, request, category_id):
         if(request.method == "POST"):
             if(request.user.is_customer):
                 return JsonResponse({"error": "You don't have rights"})
@@ -186,7 +196,7 @@ def getHistory(request): # request.user.id == user_id ?
 @api_view(["PATCH"])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
-def purchaseProducts(request): # array items with objects; each object has prod_id and quantity
+def purchaseProducts(request): # array items with objects; each object has id and amount
     if(request.method == "PATCH"):
         data = json.loads(request.body)
 
@@ -201,7 +211,7 @@ def purchaseProducts(request): # array items with objects; each object has prod_
         messages = []
         for item in items:
             product = models.Product.objects.get(id = item["id"])
-            operationResult = product.purchaseProduct(item, request.user, data["ship_id"])
+            operationResult = product.purchaseProduct(item, request.user.customer, data["ship_id"])
             if(not operationResult):
                 messages.append(f'Product #{product.id} doesnt have such amount')
             else:
@@ -238,7 +248,7 @@ def getShipping(request, ship_id):
     
 
 
-@api_view(["GET"])
+@api_view(["GET", "POST"])
 @permission_classes([IsAuthenticatedOrReadOnly])
 @csrf_exempt
 def getComments(request, user_id):
@@ -248,7 +258,10 @@ def getComments(request, user_id):
         return Response(serialized.data)
     
     elif(request.method == "POST"):
+        if(request.user.id != user_id):
+           return Response({"error": "You don't have rights to do this"}, status=status.HTTP_403_FORBIDDEN)
         serialized = serialize.CommentSerializer(data=request.data)
+
         if(serialized.is_valid()):
             serialized.save()
             return Response(serialized.data)
@@ -269,7 +282,7 @@ def manageComment(request, comment_id):
 
         return Response(serialized.data)
     elif(request.method == "PATCH"):
-        if(comment.user_id != request.user.id):
+        if(comment.user_id.id != request.user.id):
             return Response({"error": "You don't have rights to do this"}, status=status.HTTP_403_FORBIDDEN)
         
         serialized = serialize.CommentSerializer(instance=comment, data=request.data, partial=True)
@@ -279,7 +292,7 @@ def manageComment(request, comment_id):
         return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
     
     elif(request.method == "DELETE"):
-        if(comment.user_id != request.user.id):
+        if(comment.user_id.id != request.user.id):
             return Response({"error": "You don't have rights to do this"}, status=status.HTTP_403_FORBIDDEN)
         serialized = serialize.CommentSerializer(comment)
         comment.delete()
