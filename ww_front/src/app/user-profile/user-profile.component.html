@@ -4,13 +4,14 @@
   <section>
     <h3><fa-icon [icon]="faInfo"></fa-icon>Information:</h3>
     <div id="ober">
+      <div id="image">
+        <img *ngIf="u.img" src="{{u.img}}">
+        <fa-icon *ngIf="!u.img" [icon]="faUser"></fa-icon>
+      </div>
+      <p><b>Email: </b>{{u.email}}</p>
+      <p><b>Username: </b>{{u.username}}</p>
       <button (click)="logout()">Log out</button>
-    <div id="image">
-      <img *ngIf="u.img" src="{{u.img}}">
-      <fa-icon *ngIf="!u.img" [icon]="faUser"></fa-icon>
     </div>
-    <p><b>Email: </b>{{u.email}}</p>
-    <p><b>Username: </b>{{u.username}}</p></div>
     <form method="post" enctype="multipart/form-data">
       Select image to upload as your personal avatar:
       <input type="file" name="fileToUpload" id="fileToUpload">
