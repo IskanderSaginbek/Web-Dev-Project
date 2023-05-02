@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
+import {AuthService, JWT_NAME} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {map} from "rxjs";
 
@@ -64,7 +64,9 @@ export class SignupComponent implements OnInit {
         name : this.signupForm!.value.username,
         allow_news : false,
         only_available : false,
-      }));window.location.assign("http://localhost:4200/home");})
+      })); this.authService.login(this.signupForm.value.email!, this.signupForm.value.password!).pipe(
+        map(refresh => {localStorage.setItem(JWT_NAME,JSON.stringify(refresh));window.location.assign("http://localhost:4200/home");})
+      ).subscribe();})
     ).subscribe(/*data => {
       console.log(data);
     }*/);

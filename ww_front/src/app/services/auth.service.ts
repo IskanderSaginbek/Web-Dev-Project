@@ -43,10 +43,15 @@ export class AuthService {
   logout() {
     localStorage.removeItem(JWT_NAME);
     localStorage.removeItem("cur_usr");
+    localStorage.removeItem("items_ls");
   }
 
   register(user : any) {
     //console.log(JSON.stringify(user));
     return this.http.post<any>(this.url+'/api/auth/users/', JSON.stringify(user), this.httpOptions);
+  }
+
+  isAuth() {
+
   }
 }
