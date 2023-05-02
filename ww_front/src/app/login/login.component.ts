@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value.email!, this.loginForm.value.password!).pipe(
       map(refresh => {console.log(refresh); localStorage.setItem(JWT_NAME,JSON.stringify(refresh));
     this.authService.getUser(this.loginForm.value.email!).pipe(
-      map(usr => {localStorage.setItem("cur_usr",JSON.stringify(usr)); window.location.assign("http://localhost:4200/home");})
+      map(usr => { Object.assign(usr,{type : 1});
+        localStorage.setItem("cur_usr",JSON.stringify(usr));
+        window.location.assign("http://localhost:4200/home");})
     ).subscribe();})
     ).subscribe();
   }

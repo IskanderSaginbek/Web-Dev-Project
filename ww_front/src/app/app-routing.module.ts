@@ -22,6 +22,7 @@ import {BasketComponent} from "./basket/basket.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {MfrProfileComponent} from "./mfr-profile/mfr-profile.component";
 import {NotfoundComponent} from "./notfound/notfound.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
@@ -42,8 +43,8 @@ const routes: Routes = [
   {path : 'login', component: LoginComponent},
   {path : 'signup-mfr', component: SignupMfrComponent},
   {path : 'login-mfr', component: LoginMfrComponent},
-  {path : 'basket', component: BasketComponent},
-  {path : 'profile', component: UserProfileComponent},
+  {path : 'basket', component: BasketComponent, canActivate : [AuthGuard]},
+  {path : 'profile', component: UserProfileComponent, canActivate : [AuthGuard]},
   {path : 'profile-mfr', component: MfrProfileComponent},
   {path : '404', component: NotfoundComponent},
   {path : '', redirectTo: 'home', pathMatch : "full"},

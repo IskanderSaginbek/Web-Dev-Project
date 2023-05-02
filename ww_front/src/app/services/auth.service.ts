@@ -51,7 +51,12 @@ export class AuthService {
     return this.http.post<any>(this.url+'/api/auth/users/', JSON.stringify(user), this.httpOptions);
   }
 
-  isAuth() {
-
+  isAuth() : boolean {
+    //const token = this.jwtHelper.decodeToken(JSON.parse(localStorage.getItem(JWT_NAME)!).refresh);
+    //console.log(JSON.parse(localStorage.getItem(JWT_NAME)!).refresh);
+    //console.log(token);
+    //return false;
+    if (localStorage.getItem(JWT_NAME) === null) return false;
+    return !this.jwtHelper.isTokenExpired(JSON.parse(localStorage.getItem(JWT_NAME)!).refresh);
   }
 }
