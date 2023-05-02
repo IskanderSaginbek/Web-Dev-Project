@@ -10,7 +10,7 @@
     <a href="{{p.datasheet}}" target="_blank"><b>Datasheet</b> <fa-icon [icon]="fapdf" style="color:red"></fa-icon></a>
     <p><b>Rating:</b> {{p.rating.toPrecision(2)}}/5 (based on <b>{{p.ratings_num}}</b> ratings)</p>
     <b>Rate the product: </b>
-    <div class="star-rating">
+    <div class="star-rating" *ngIf="u.type==1">
       <div class="star-rating__wrap">
         <input class="star-rating__input" id="star-rating-5" type="radio" name="rating" value="5">
         <label class="star-rating__ico" for="star-rating-5" title="5 out of 5 stars"></label>
@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <div id="payment-info">
+  <div id="payment-info" *ngIf="u.type==1">
     <span><label for="quantity">Enter quantity: </label>
     <input disabled="{{p.amount==0}}" type="number" name="amount" id="quantity" min="1" max="{{p.amount}}" value="1" [(ngModel)]="q"></span>
     <button [disabled]="p.amount==0" class="orange" (click)="addToCart(p,q)">Add to cart</button>

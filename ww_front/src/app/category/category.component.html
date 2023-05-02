@@ -1,6 +1,6 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
-<div *ngIf="cat">
+<div *ngIf="cat&&prods&&mfrs">
   <div id="cat_title">
     <h1>{{cat.name}}:</h1>
     <p>{{cat.descr}}</p>
@@ -9,7 +9,7 @@
     <div class="card" *ngFor="let p of prods" routerLink="/categories/{{cat.id}}/{{p.id}}">
       <div id="img_wrapper"><img src="{{p.image}}"></div>
       <div class="prod_descr">
-        <img src="{{mfrs[p.mfr_id].img}}">
+        <img src="{{mfrs[p.mfr_id-1].img}}">
         <h3>{{p.name}}</h3><br>
         <p><b>Product type:</b> {{p.sub_cat}}</p>
         <p><b>Description: </b>{{p.descr_short}}</p>

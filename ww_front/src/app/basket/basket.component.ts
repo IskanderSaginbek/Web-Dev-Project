@@ -3,6 +3,8 @@ import {cart_item, product, shipment} from "../../interfaces";
 import {Constants} from "../app.component";
 import {CartService} from "../services/cart.service";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {CategoriesService} from "../services/categories.service";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-basket',
@@ -11,19 +13,24 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons";
 })
 export class BasketComponent implements OnInit {
   s: number = 2;
-  shipments : shipment[] = Constants.shipments;
+  shipments : shipment[] = [];
   items : cart_item[] = [];
   total : number = 0;
   faX = faTimes;
-  constructor(private cartService : CartService) { }
+  constructor(private cartService : CartService, private catService : CategoriesService) { }
 
   ngOnInit(): void {
-    this.s = 2;
-    this.items = this.cartService.getCart();
-    for (let v of this.items) {
-      this.total += v.price*v.quantity;
-    }
-    this.total += this.shipments[this.s].price;
+    this.catService.getShippings().pipe(
+      map(prj => {
+        this.shipments = prj;
+        this.s = 2;
+        this.items = this.cartService.getCart();
+        for (let v of this.items) {
+          this.total += v.price*v.quantity;
+        }
+        this.total += this.shipments[this.s].price;
+      })
+    ).subscribe();
   }
 
   clearCart() : void {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { user, cart_item, history_item, mfr, comment, category, shipment, product} from '../interfaces';
 import {Router, NavigationEnd} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,8 @@ export class AppComponent implements OnInit{
 }
 
 export class Constants {
+  constructor(private http : HttpClient) {
+  }
   public static u = JSON.parse(localStorage.getItem("cur_usr")!) || {
     id : 0,
     type : 0,
@@ -42,7 +45,7 @@ export class Constants {
     allow_news : false,
     only_available : false,
   }
-  public static cats : category[] = [ //ditto
+  /*public static cats : category[] = [ //ditto
     {
       id : 0,
       name : "Resistors",
@@ -113,8 +116,8 @@ export class Constants {
       descr_short : "ROM and secondary storage devices.",
       image : "../assets/cat_thumbnails/Super_Talent_2.5in_SATA_SSD_SAM64GM25S.jpg",
     },
-  ];
-  public static mfrs : mfr[] = [{
+  ];*/
+  /*public static mfrs : mfr[] = [{
     id : 0,
     email : "vishay@gmail.com",
     name : "Vishay BC Components",
@@ -859,5 +862,5 @@ export class Constants {
     days : 7,
     price : 49,
   },
-  ];
+  ];*/
 }

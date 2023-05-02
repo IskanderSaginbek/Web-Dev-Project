@@ -5,6 +5,8 @@ import {user,shipment,product,category,cart_item,mfr} from "../../interfaces"
 import {ActivatedRoute, Router} from "@angular/router";
 import {faFacebook, faTelegram, faWhatsapp} from "@fortawesome/free-brands-svg-icons";
 import {CartService} from "../services/cart.service";
+import {CategoriesService} from "../services/categories.service";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-product',
@@ -13,7 +15,7 @@ import {CartService} from "../services/cart.service";
 })
 export class ProductComponent implements OnInit {
 
-  u : user = Constants.u;
+  u = Constants.u;
   p : product | undefined;
   c : category | undefined;
   m : mfr | undefined;
@@ -34,25 +36,31 @@ export class ProductComponent implements OnInit {
   msg_text : string = "Product added to cart";
   msg_anim : string = "msg_popup";
   q : number = 1;
-  constructor(private route : ActivatedRoute, private cartService : CartService, private router : Router) { }
+  constructor(private route : ActivatedRoute, private cartService : CartService, private router : Router, private catService : CategoriesService) { }
 
+  notFound() : any
+  {
+    this.router.navigate(['/404'], {
+      skipLocationChange: true,
+      state: {
+        reason : "Unable to locate the product"
+      }
+    });
+  }
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const pId = Number(routeParams.get('prodId'));
     const cId = Number(routeParams.get('catId'));
-    this.p = Constants.mock_products[pId];
-    if (!this.p || cId != this.p.cat_id) {
-      this.router.navigate(['/404'], {
-        skipLocationChange: true,
-        state: {
-          reason : "Unable to locate the product"
-        }
-      });
-    }
-    else {
-      this.c = Constants.cats[cId];
-      this.m = Constants.mfrs[this.p.mfr_id];
-    }
+    this.catService.getProductById(pId).pipe(
+      map(p => {this.p = p;
+        this.catService.getMfrById(p.mfr_id).subscribe((mfr)=>(this.m=mfr),(err)=>{
+          this.notFound()
+        });
+        this.catService.getCatById(cId).subscribe((cat) => (this.c = cat));
+      })
+    ).subscribe((a)=>{},(err)=>{
+      this.notFound()
+    });
   }
 
   share(site : number): void {
