@@ -1,0 +1,67 @@
+<app-header xmlns="http://www.w3.org/1999/html"></app-header>
+<app-navbar></app-navbar>
+<main>
+  <section>
+    <h3><fa-icon [icon]="faInfo"></fa-icon>Information:</h3>
+    <div id="ober">
+      <div id="image">
+        <img *ngIf="u.img" src="{{u.img}}">
+        <fa-icon *ngIf="!u.img" [icon]="faUser"></fa-icon>
+      </div>
+      <p><b>Email: </b>{{u.email}}</p>
+      <p><b>Username: </b>{{u.username}}</p>
+      <button (click)="logout()">Log out</button>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+      Select image to upload as your personal avatar:
+      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input type="submit" value="Upload Image" name="submit">
+    </form>
+    <form>
+      <label for="fname">First name: </label>
+      <input name="fname" type="text" maxlength="255" id="fname" value="{{u.fname}}">
+      <label for="lname">Last name: </label>
+      <input name="lname" type="text" maxlength="255" id="lname" value="{{u.lname}}">
+      <label for="phone">Phone number: </label>
+      <input name="phone" type="tel" maxlength="255" id="phone" value="{{u.phone}}">
+      <label for="address">Address: </label>
+      <input name="address" type="text" maxlength="255" id="address" value="{{u.address}}">
+      <label for="card_num">16-Digit card number: </label>
+      <input name="card_num" type="text" maxlength="16" id="card_num" value="{{u.card_num}}">
+      <label for="ver_num">Verification number: </label>
+      <input name="ver_num" type="text" maxlength="4" id="ver_num" value="{{u.ver_num}}">
+      <label for="exp_date">Credit card expiration date: </label>
+      <input name="exp_date" type="date" id="exp_date" value="{{u.exp_date}}">
+      <button>Save</button>
+    </form>
+  </section>
+  <section>
+    <h3><fa-icon [icon]="faGear"></fa-icon>Preferences:</h3>
+    <form>
+      <span>
+        <input name="instock" type="checkbox" id="instock" value="{{u.only_available}}">
+        <label for="instock">Show only the available products: </label>
+      </span>
+      <span>
+        <input name="news" type="checkbox" id="news" value="{{u.allow_news}}">
+        <label for="news">Receive news on my email: </label>
+      </span>
+      <label>Preferred product category</label>
+      <select [(ngModel)]="cc">
+        <option value="9999" selected>None</option>
+        <option value="{{c.id}}" *ngFor="let c of categories">{{c.name}}</option>
+      </select>
+      <button>Save</button>
+    </form>
+  </section>
+  <section>
+    <h3><fa-icon [icon]="faHistory"></fa-icon>History:</h3>
+    <div *ngFor="let h of history">
+      <p>{{h.prod_id}}</p>
+      <p>{{h.price}}</p>
+      <p>{{h.quantity}}</p>
+      <p>{{h.ship_id}}</p>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

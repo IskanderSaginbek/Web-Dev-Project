@@ -1,0 +1,7 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<h1>Manufacturers:</h1>
+<main>
+  <img src="{{m.img}}" *ngFor="let m of mfrs" routerLink="/manufacturers/{{m.id}}" alt="{{m.name}}">
+</main>
+<app-footer></app-footer>

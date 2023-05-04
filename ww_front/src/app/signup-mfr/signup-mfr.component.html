@@ -1,0 +1,17 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <h1>Sign up (Manufacturer)</h1>
+  <label for="email">Email:</label>
+  <input type="email" placeholder="example@example.com" maxlength="255" name="email" id="email" formControlName="email" required>
+  <label for="username">Username:</label>
+  <input type="text" placeholder="example123" maxlength="255" name="username" id="username" formControlName="username" required>
+  <label for="pass">Password:</label>
+  <input type="password" maxlength="255" name="pass" id="pass" formControlName="password" formControlName="password" required>
+  <label for="confirm">Confirm password:</label>
+  <input type="password" maxlength="255" name="confirm" id="confirm" formControlName="confirm" required>
+  <span style="color: red" *ngIf="signupForm.hasError('invalid')">Passwords don't match</span>
+  <!--<span><input type="checkbox" name="keep_logged">Keep me logged in</span>-->
+  <button type="submit">Create account</button>
+</form>
+<app-footer></app-footer>

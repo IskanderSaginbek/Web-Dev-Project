@@ -1,0 +1,19 @@
+:host ::ng-deep #nav-login {
+  display: none;
+}
+:host ::ng-deep #nav-signup {
+  display: none;
+}
+:host ::ng-deep #nav-signup-mfr {
+  display: inline-block;
+}
+@media screen and (max-width: 768px) {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  input {
+    width : 80%;
+  }
+}

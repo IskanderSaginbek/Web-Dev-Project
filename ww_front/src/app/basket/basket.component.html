@@ -1,0 +1,31 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<main>
+  <span><b>Choose shipment method:</b>
+    <select name="ship" (change)="recalc_ship()" (mouseup)="recalc_ship()" [(ngModel)]="s">
+      <option value="{{s.id-1}}" *ngFor="let s of shipments">{{s.name}}</option>
+    </select></span>
+  <p *ngIf="s && shipments">{{shipments[s].name}}: {{shipments[s].descr}}</p>
+  <p *ngIf="s && shipments"><b>Price:</b> {{shipments[s].price}}$</p>
+  <p *ngIf="s && shipments">Delivery in {{shipments[s].days}} days</p>
+  <b *ngIf="items.length==0" id="empty">Your cart is empty</b>
+  <div *ngIf="items.length>0">
+    <button (click)="clearCart()" id="clear">Clear cart</button>
+    <div *ngFor="let i of items" class="item-wrapper">
+      <fa-icon [icon]="faX" (click)="removeItem(i)"></fa-icon>
+      <img src="{{i.thumbnail}}">
+      <div class="item">
+        <h5><a routerLink="/categories/{{i.cat_id}}/{{i.prod_id}}">{{i.name}}</a></h5>
+        <p><b>Price per piece:</b> {{i.price}}$</p>
+        <p><b>Available:</b> {{i.available}}</p>
+        <p><b>Quantity:</b> <input (change)="recalc(i)" (mouseup)="recalc(i)" (mouseleave)="recalc(i)"
+                                   type="number" name="amount" id="quantity" min="1" max="{{i.available}}" value="1"
+                                   [(ngModel)]="i.quantity"></p>
+        <p class="bold">Total cost: {{(i.price*i.quantity).toFixed(3)}}$</p>
+      </div>
+    </div>
+    <p class="bold">Total: {{total.toFixed(3)}}$</p>
+    <button id="checkout" (click)="checkout()">Checkout</button>
+  </div>
+</main>
+<app-footer></app-footer>

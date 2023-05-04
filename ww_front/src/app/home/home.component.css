@@ -1,0 +1,202 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+#hero-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url("../../assets/robin-glauser-zP7X_B86xOg-unsplash.jpg");
+  background-size: cover;
+  width: 100%;
+  height : min-content;
+}
+#hero {
+  width : 65%;
+  display: inline-block;
+  border-radius: .5em;
+  margin: 4em 0;
+  padding: 1em;
+  backdrop-filter: brightness(70%) blur(.5em);
+}
+#hero *{
+  font-family: Garamond;
+  text-align: center;
+  color : #FBFCFF;
+  padding-bottom: 1em;
+}
+#hero h1{
+  font-size : 4rem;
+}
+#hero p{
+  font-size: 2rem;
+}
+
+.cat:nth-of-type(2n) {
+  background-color: #F6F1F1;
+}
+
+.cat h3, h2 {
+  color : #006ED3;
+  padding-bottom: 1em;
+}
+.cat h2 {
+  font-weight: 800;
+  font-family: Garamond;
+  font-size: 2.5rem;
+  padding-bottom: 1em;
+}
+.cat {
+  text-align: center;
+  padding : 1em .5em;
+}
+
+#about {
+  display: flex;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  height : 35vh;
+}
+#about img {
+  height : 100%;
+  align-self: stretch;
+  float : left;
+}
+#about .cat_sub {
+  margin-right: 10%;
+  margin-left: 5%;
+}
+#partnership {
+  display: flex;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  height : 35vh;
+}
+#partnership img {
+  height : 100%;
+  align-self: stretch;
+  float : right;
+}
+#partnership .cat_sub {
+  margin-left: 10%;
+  margin-right: 5%;
+}
+
+.cat_sub {
+  align-self: center;
+}
+.cat_sub p, h2 {
+  display: inline-block;
+  flex-grow: 2;
+  padding: 0 .5em;
+}
+.cat_sub img {
+  display: inline-block;
+  max-width: 30%;
+  border-radius: .5em;
+}
+
+#cat_wrapper {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr 1.5fr;
+}
+
+.cat_descr {
+  padding-top: 1em;
+  margin-top : auto;
+  margin-bottom : 1em;
+}
+
+.card h3 {
+  text-indent: 0;
+  display: inline-block;
+}
+.card img {
+  border-radius: .5em;
+  max-width: 100%;
+}
+#others {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mfrs-prods {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.mfrs-prods > img {
+  box-sizing: border-box;
+  width: 20%;
+  padding: 1em;
+  cursor: pointer;
+  transition: 400ms;
+}
+.mfrs-prods > img:hover {
+  background-color: #AEAEAE;
+  width: 20%;
+  padding: 1em;
+  cursor: pointer;
+  transition: 400ms;
+}
+.mfrs-prods .card {
+  flex : 1 1 20%;
+}
+
+@media screen and (max-width: 768px) {
+  .mfrs-prods {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mfrs-prods > img {
+    width: 80%;
+  }
+  #cat_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    width: 100%;
+  }
+  #hero {
+    width : 80%;
+  }
+  .card {
+    border-radius: 0;
+    border : solid #000000 1px;
+  }
+  #about img, #partnership img {
+    display: none;
+  }
+  #about {
+    background-image: url("../../assets/thisisengineering-raeng-IpTPp_aPbYE-unsplash.jpg");
+    background-size: cover;
+    color: #FFFCFB;
+  }
+  #partnership {
+    background-image: url("../../assets/38826275042_abcea30792_b.jpg");
+    background-size: cover;
+    color: #FFFCFB;
+  }
+  #partnership h2 {
+    font-size: 2rem;
+  }
+  #about p, #partnership p {
+    display: inline-block;
+    width : 85%;
+    border-radius: .5em;
+    padding: 1em;
+    backdrop-filter: brightness(70%) blur(.5em);
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  #about, #partnership {
+    height : 20vh;
+  }
+  #about .cat_sub, #partnership .cat_sub {
+    margin: 0 1em;
+  }
+}

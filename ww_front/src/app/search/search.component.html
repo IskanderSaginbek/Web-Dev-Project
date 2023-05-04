@@ -1,0 +1,17 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<main *ngIf="prods&&cats&&mfrs">
+  <div class="card" *ngFor="let p of prods" routerLink="/categories/{{p.cat_id}}/{{p.id}}">
+    <div id="img_wrapper"><img src="{{p.image}}"></div>
+    <div class="prod_descr">
+      <img src="{{mfrs[p.mfr_id-1].img}}">
+      <h3>{{p.name}}</h3><br>
+      <p><b>Product type:</b> {{p.sub_cat}}</p>
+      <p><b>Description: </b>{{p.descr_short}}</p>
+      <p><b>Cost per piece:</b> {{p.price}}$</p>
+      <p><b>In stock:</b> {{p.amount}}</p>
+      <p *ngIf="p.amount==0" style="color: red"><b>NOT IN STOCK</b></p>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

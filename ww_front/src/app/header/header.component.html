@@ -1,0 +1,31 @@
+<header>
+  <div id="logo" routerLink="/home">
+    <img src="assets/logo.png">
+    <h5 style="color:#000">Wired World</h5>
+  </div>
+  <div id="search">
+    <label>Order by:</label>
+    <div class="sub_search">
+      <select [(ngModel)]="ob">
+        <option value="name">Name</option>
+        <option value="mfr_id">Manufacturer</option>
+        <option value="date">Date published</option>
+        <option value="price">Price</option>
+      </select>
+      <input type="radio" name="order" class="order" id="order-up">
+      <button (click)="o=0"onclick="document.getElementById('order-up').checked=true" [(ngModel)]="o"><fa-icon [icon]="faUp"></fa-icon></button>
+      <input type="radio" name="order" class="order" id="order-down">
+      <button (click)="o=1"onclick="document.getElementById('order-down').checked=true" [(ngModel)]="o"><fa-icon [icon]="faDown"></fa-icon></button>
+    </div>
+    <label>Category:</label>
+    <div class="sub_search">
+      <select [(ngModel)]="cc">
+        <option value="9999" selected>Any</option>
+        <option value="{{c.id}}" *ngFor="let c of categories">{{c.name}}</option>
+      </select>
+      <input type="text" placeholder="Part no./Keyword" [(ngModel)]="sw">
+      <button (click)="search(sw,cc,ob,o)"><fa-icon [icon]="faSearch"></fa-icon></button>
+    </div>
+    <span id="check"><input type="checkbox"><p>In stock</p></span>
+  </div>
+</header>

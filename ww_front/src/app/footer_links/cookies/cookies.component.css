@@ -1,0 +1,21 @@
+.footer-link span {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-link div {
+  margin-top: 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+span > button {
+  width: 100%;
+}
+
+.footer-link {
+  min-height: auto;
+  display: inline-block;
+}

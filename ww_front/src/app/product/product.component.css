@@ -1,0 +1,249 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap : 1em;
+}
+main > div {
+  display: inline-block;
+  flex-direction: column;
+  padding: 2em 2em .5em 2em;
+}
+
+button {
+  border-radius: .3em;
+}
+
+#product-info {
+  grid-column: 1 / span 3;
+}
+#product-info > img {
+  width : 20%;
+  float : left;
+  margin: 0 1em 1em 0;
+}
+#share {
+  padding: .2em;
+  font-size: 1.2rem;
+  margin : .5em 0;
+  float: right;
+}
+
+span {
+  display: block;
+}
+span > img {
+  width: 8em;
+  float : right;
+  cursor: pointer;
+}
+#main-info {
+  clear: left;
+}
+#main-info p{
+  margin: .2em;
+  text-indent: 2rem;
+}
+
+#payment-info {
+  grid-column: 4 / span 1;
+  display: flex;
+  flex-direction: column;
+}
+#payment-info span {
+  margin-bottom : 1em;
+}
+.orange {
+  font-weight: 800;
+}
+
+#comment-section {
+  grid-column: 1 / span 4;
+  padding: 0 0 0 calc(2em + 2rem);
+}
+form button {
+  box-sizing: content-box;
+  width : fit-content;
+  height: fit-content;
+  padding: .5em;
+  font-size: 1.2rem;
+}
+form {
+  display: flex;
+  flex-direction: row;
+}
+.avatar fa-icon, #avatar img{
+  width : 4rem;
+  font-size: 4rem;
+}
+.avatar fa-icon {
+  color : #AEAEAE;
+}
+form * {
+  margin-bottom : 0;
+}
+
+a fa-icon {
+  padding: 0 .2em;
+}
+
+.star-rating{
+  display: flex;
+}
+.star-rating button {
+  margin-left: .5em;
+}
+.star-rating__wrap{
+  display: inline-block;
+  font-size: 1rem;
+}
+.star-rating__wrap:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+.star-rating__ico{
+  float: right;
+  padding-left: 2px;
+  cursor: pointer;
+  color: #000000;
+}
+.star-rating__ico:last-child{
+  padding-left: 0;
+}
+.star-rating__input{
+  width: 1em;
+  height: 1em;
+  display: none;
+}
+.star-rating__ico:before {
+  content: "\2606";
+  font-size: 1.5em;
+}
+.star-rating__ico:hover:before,
+.star-rating__ico:hover ~ .star-rating__ico:before,
+.star-rating__input:checked ~ .star-rating__ico:before
+{
+  color: #FFC700;
+  -webkit-text-stroke: .05em #000000;
+  content: "\2605";
+  font-size: 1.5em;
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+}
+
+@keyframes share_popup_anim {
+  0% {background-color: rgba(0,0,0,0); top: 0vh;}
+  100% {background-color: rgba(0,0,0,.5); top: -25vh;}
+}
+@keyframes share_menu_anim {
+  0% {opacity: 0.0}
+  100% {opacity: 1.0}
+}
+#share-popup {
+  width: 100vw;
+  height: 150vh;
+  position: fixed;
+  left: 0;
+  top: -25vh;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(0,0,0,.5);
+  justify-content: center;
+  align-items: center;
+  animation-duration: 800ms;
+  animation-fill-mode: forwards;
+}
+#share-menu {
+  width : 8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FBFCFF;
+  border : solid .1em;
+  border-radius: .2em;
+  font-size: 2em;
+  padding: .5em;
+  animation-duration: 800ms;
+  animation-fill-mode: forwards;
+}
+#share-menu span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: .5em;
+}
+#share-menu h3 {
+  margin: 0 0 .5em 0;
+  text-indent: 0;
+}
+#X {
+  align-self: flex-start;
+  position : relative;
+  right: 0;
+  top : 0;
+  cursor: pointer;
+  font-size: .8em;
+}
+
+@keyframes msg_popup {
+  0% {bottom: -20vh;}
+  20% {bottom: 0;}
+  90% {bottom: 0;}
+  100% {bottom: -20vh;}
+}
+#message {
+  border-radius: .3em .3em 0 0;
+  text-align: center;
+  background-color: #EBECED;
+  padding: .5em 0;
+  border-bottom: none;
+  width: 40vw;
+  position: fixed;
+  left : 30vw;
+  bottom: -20vh;
+  animation-name: msg_popup;
+  animation-duration: 5s;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+  font-size: 2rem;
+  color : #FBFCFF;
+}
+@media screen and (max-width: 768px) {
+  #message {
+    width: 80vw;
+    left : 10vw;
+    bottom: -30vh;
+  }
+  @keyframes msg_popup {
+    0% {bottom: -30vh;}
+    20% {bottom: 0;}
+    90% {bottom: 0;}
+    100% {bottom: -30vh;}
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  #comment-section {
+    padding: 0;
+    width: 100%;
+  }
+  form {
+    width: 100%;
+  }
+  * {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  #product-info > img {
+    display: block;
+    width : 80%;
+    float: none;
+    margin: auto;
+  }
+}

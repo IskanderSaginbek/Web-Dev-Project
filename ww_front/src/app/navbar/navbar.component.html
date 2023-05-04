@@ -1,0 +1,21 @@
+<nav>
+  <div id="nav-l">
+    <a routerLink="/categories">Products</a>
+    <a routerLink="/manufacturers">Manufacturers</a>
+  </div>
+  <div id="nav-r">
+    <div id="nav-profile" *ngIf="u.type!=0" routerLink="/profile">
+      <img *ngIf="u.img" src="{{u.img}}">
+      <fa-icon *ngIf="!u.img" [icon]="faUser"></fa-icon>
+      <p *ngIf="u.type==1">{{u.username}}</p>
+      <p *ngIf="u.type==2">{{u.name}}</p>
+    </div>
+    <a routerLink="/signup" id="nav-signup">Sign up</a>
+    <a routerLink="/login" id="nav-login">Log in</a>
+    <a routerLink="/signup-mfr" id="nav-signup-mfr">Sign up</a>
+    <a routerLink="/login-mfr" id="nav-login-mfr">Log in</a>
+    <div id="nav-cart" routerLink="/basket" *ngIf="u.type==1">
+      <fa-icon [icon]="faCart"></fa-icon>
+    </div>
+  </div>
+</nav>

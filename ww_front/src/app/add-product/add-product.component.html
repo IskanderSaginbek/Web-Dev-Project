@@ -1,0 +1,27 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+  <h1>Enter product details</h1>
+  <label for="name">Product name:</label>
+  <input type="text" maxlength="255" name="name" id="name" formControlName="name" required>
+  <label for="descr">Product description:</label>
+  <input type="text" maxlength="255" name="descr" id="descr" formControlName="descr">
+  <label for="descr_short">Short description:</label>
+  <input type="text" maxlength="255" name="descr_short" id="descr_short" formControlName="descr_short" required>
+  <label for="sub_cat">Sub-category:</label>
+  <input type="text" maxlength="255" name="sub_cat" id="sub_cat" formControlName="sub_cat" required>
+  <label for="img">Image:</label>
+  <input type="image" name="img" id="img" required>
+  <label for="ds">Link to datasheet:</label>
+  <input type="text" maxlength="255" name="ds" id="ds" formControlName="ds">
+  <label for="price">Price per piece:</label>
+  <input type="number" min="0" max="1000000" name="price" id="price" formControlName="price" required>
+  <label for="amount">In stock:</label>
+  <input type="amount" min="0" max="1000000" name="amount" id="amount" formControlName="amount" required>
+  <label>Product category</label>
+  <select formControlName="cat_id">
+    <option value="{{c.id}}" *ngFor="let c of categories">{{c.name}}</option>
+  </select>
+  <button type="submit">Add the product</button>
+</form>
+<app-footer></app-footer>
